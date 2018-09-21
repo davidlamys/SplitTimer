@@ -16,8 +16,10 @@ protocol ViewModelType {
 
 protocol ViewModelInputType {
     var primaryButtonTapEventObserver: PublishSubject<Void> { get }
+    var secondaryButtonTapEventObserver: PublishSubject<Void> { get }
 }
 
 protocol ViewModelOutputType {
     var primaryButtonTitleText: Observable<String> { get }
+    var secondaryButtonTitleText: Observable<String> { get }
 }

@@ -28,6 +28,7 @@ final class ViewController: UIViewController {
     private func setupBinding(_ viewModel: ViewModelType) {
         disposeBag = DisposeBag()
         bindPrimaryButton(viewModel)
+        bindSecondaryButton(viewModel)
     }
     
     private func bindPrimaryButton(_ viewModel: ViewModelType) {
@@ -37,6 +38,16 @@ final class ViewController: UIViewController {
         
         viewModel.output.primaryButtonTitleText
             .bind(to: self.primaryButton.rx.title())
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindSecondaryButton(_ viewModel: ViewModelType) {
+        secondaryButton.rx.tap
+            .bind(to: viewModel.input.secondaryButtonTapEventObserver)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.secondaryButtonTitleText
+            .bind(to: self.secondaryButton.rx.title())
             .disposed(by: disposeBag)
     }
 }
