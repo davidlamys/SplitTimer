@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1599E3AB215563E300523F26 /* ViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599E3AA215563E300523F26 /* ViewControllerSpec.swift */; };
+		1599E3AE215572E400523F26 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599E3AD215572E400523F26 /* UIViewController+Extension.swift */; };
+		1599E3B02155746500523F26 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599E3AF2155746500523F26 /* ViewModel.swift */; };
+		1599E3B221557B2B00523F26 /* ObservableHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599E3B121557B2B00523F26 /* ObservableHelpers.swift */; };
 		15ECEEEA21553CD300109445 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECEEE921553CD300109445 /* AppDelegate.swift */; };
 		15ECEEEC21553CD300109445 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECEEEB21553CD300109445 /* ViewController.swift */; };
 		15ECEEEF21553CD300109445 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEED21553CD300109445 /* ViewController.storyboard */; };
@@ -28,7 +32,10 @@
 
 /* Begin PBXFileReference section */
 		051A301E27B61F465605BEDA /* Pods-SplitTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer.debug.xcconfig"; sourceTree = "<group>"; };
+		1599E3AA215563E300523F26 /* ViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSpec.swift; sourceTree = "<group>"; };
 		1599E3AD215572E400523F26 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		1599E3AF2155746500523F26 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		1599E3B121557B2B00523F26 /* ObservableHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableHelpers.swift; sourceTree = "<group>"; };
 		15ECEEE621553CD300109445 /* SplitTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15ECEEE921553CD300109445 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15ECEEEB21553CD300109445 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +80,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		1599E3B321557B3100523F26 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				1599E3B121557B2B00523F26 /* ObservableHelpers.swift */,
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
 		15ECEEDD21553CD200109445 = {
 			isa = PBXGroup;
 			children = (
@@ -96,8 +111,10 @@
 		15ECEEE821553CD300109445 /* SplitTimer */ = {
 			isa = PBXGroup;
 			children = (
+				1599E3AC21556ABE00523F26 /* Utilities */,
 				15ECEEE921553CD300109445 /* AppDelegate.swift */,
 				15ECEEEB21553CD300109445 /* ViewController.swift */,
+				1599E3AF2155746500523F26 /* ViewModel.swift */,
 				15ECEEED21553CD300109445 /* ViewController.storyboard */,
 				15ECEEF021553CD400109445 /* Assets.xcassets */,
 				15ECEEF221553CD400109445 /* LaunchScreen.storyboard */,
@@ -109,6 +126,8 @@
 		15ECEEFD21553CD400109445 /* SplitTimerTests */ = {
 			isa = PBXGroup;
 			children = (
+				1599E3B321557B3100523F26 /* Utilites */,
+				1599E3AA215563E300523F26 /* ViewControllerSpec.swift */,
 				15ECEF0021553CD400109445 /* Info.plist */,
 			);
 			path = SplitTimerTests;
@@ -320,6 +339,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1599E3B221557B2B00523F26 /* ObservableHelpers.swift in Sources */,
+				1599E3AB215563E300523F26 /* ViewControllerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
