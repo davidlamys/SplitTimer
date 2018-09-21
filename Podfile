@@ -1,15 +1,20 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '11.0'
+source 'https://github.com/CocoaPods/Specs.git'
 
 target 'SplitTimer' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+    use_frameworks!
+    
+    # Pods for SplitTimer
+    pod 'RxSwift', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
+    pod 'RxCocoa', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
+    
+end
 
-  # Pods for SplitTimer
-
-  target 'SplitTimerTests' do
+target 'SplitTimerTests' do
     inherit! :search_paths
     # Pods for testing
-  end
-
+    pod 'RxBlocking', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
+    pod 'RxTest',     :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
+    pod 'Nimble', '~> 6.0.0'
+    pod 'Quick'
 end

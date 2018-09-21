@@ -1,4 +1,4 @@
-framework module Pods_SplitTimerTests {
+module Pods_SplitTimerTests [system] {
   umbrella header "Pods-SplitTimerTests-umbrella.h"
 
   export *

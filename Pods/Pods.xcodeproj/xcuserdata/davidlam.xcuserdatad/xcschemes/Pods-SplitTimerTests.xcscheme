@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EE8E301DE3C171487D49D73FADCA5ACB"
+               BlueprintIdentifier = "12EB95D4415DA9956F0F3D7C5E9C805A"
                BlueprintName = "Pods-SplitTimerTests"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Pods-SplitTimerTests.framework">
+               BuildableName = "libPods-SplitTimerTests.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

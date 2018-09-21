@@ -1,3 +1,63 @@
-PODFILE CHECKSUM: fbf4731d833b5aaaa8da87194eb1b5a21b1d0d01
+PODS:
+  - Nimble (6.0.1)
+  - Quick (1.3.0)
+  - RxBlocking (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.3.1)
+  - RxTest (4.3.1):
+    - RxSwift (~> 4.0)
+
+DEPENDENCIES:
+  - Nimble (~> 6.0.0)
+  - Quick
+  - RxBlocking (from `https://github.com/ReactiveX/RxSwift.git`, branch `develop`)
+  - RxCocoa (from `https://github.com/ReactiveX/RxSwift.git`, branch `develop`)
+  - RxSwift (from `https://github.com/ReactiveX/RxSwift.git`, branch `develop`)
+  - RxTest (from `https://github.com/ReactiveX/RxSwift.git`, branch `develop`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Nimble
+    - Quick
+
+EXTERNAL SOURCES:
+  RxBlocking:
+    :branch: develop
+    :git: https://github.com/ReactiveX/RxSwift.git
+  RxCocoa:
+    :branch: develop
+    :git: https://github.com/ReactiveX/RxSwift.git
+  RxSwift:
+    :branch: develop
+    :git: https://github.com/ReactiveX/RxSwift.git
+  RxTest:
+    :branch: develop
+    :git: https://github.com/ReactiveX/RxSwift.git
+
+CHECKOUT OPTIONS:
+  RxBlocking:
+    :commit: d00a19f6813c019e9b9259d614f3111f7716a30d
+    :git: https://github.com/ReactiveX/RxSwift.git
+  RxCocoa:
+    :commit: d00a19f6813c019e9b9259d614f3111f7716a30d
+    :git: https://github.com/ReactiveX/RxSwift.git
+  RxSwift:
+    :commit: d00a19f6813c019e9b9259d614f3111f7716a30d
+    :git: https://github.com/ReactiveX/RxSwift.git
+  RxTest:
+    :commit: d00a19f6813c019e9b9259d614f3111f7716a30d
+    :git: https://github.com/ReactiveX/RxSwift.git
+
+SPEC CHECKSUMS:
+  Nimble: 1527fd1bd2b4cf0636251a36bc8ab37e81da8347
+  Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
+  RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
+
+PODFILE CHECKSUM: ec3bdfc64a80206bc95f0510c30b56ee3b762685
 
 COCOAPODS: 1.5.0

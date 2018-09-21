@@ -13,7 +13,7 @@
 		15ECEEF121553CD400109445 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEF021553CD400109445 /* Assets.xcassets */; };
 		15ECEEF421553CD400109445 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEF221553CD400109445 /* LaunchScreen.storyboard */; };
 		15ECEEFF21553CD400109445 /* SplitTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECEEFE21553CD400109445 /* SplitTimerTests.swift */; };
-		79799D36226BCAA3DE134197 /* Pods_SplitTimerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEBFA6019299115E1D6E42D /* Pods_SplitTimerTests.framework */; };
+		C10ED7E1134649AEDD1D076B /* libPods-SplitTimerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB29AD19056D2DF133AD258 /* libPods-SplitTimerTests.a */; };
 		EAFE1953D19B7ED05635C41F /* Pods_SplitTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA4AFA905DF76523676CF06 /* Pods_SplitTimer.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,11 +39,11 @@
 		15ECEEFA21553CD400109445 /* SplitTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15ECEEFE21553CD400109445 /* SplitTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTimerTests.swift; sourceTree = "<group>"; };
 		15ECEF0021553CD400109445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6BEBFA6019299115E1D6E42D /* Pods_SplitTimerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitTimerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95798FAE12E4A8CECFC4BFCB /* Pods-SplitTimerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimerTests/Pods-SplitTimerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEE752F04DEC2C8BC8A4BF6F /* Pods-SplitTimerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimerTests/Pods-SplitTimerTests.release.xcconfig"; sourceTree = "<group>"; };
 		AFA4AFA905DF76523676CF06 /* Pods_SplitTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E248B144F2D583926F948B87 /* Pods-SplitTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer.release.xcconfig"; sourceTree = "<group>"; };
+		EFB29AD19056D2DF133AD258 /* libPods-SplitTimerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SplitTimerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79799D36226BCAA3DE134197 /* Pods_SplitTimerTests.framework in Frameworks */,
+				C10ED7E1134649AEDD1D076B /* libPods-SplitTimerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				AFA4AFA905DF76523676CF06 /* Pods_SplitTimer.framework */,
-				6BEBFA6019299115E1D6E42D /* Pods_SplitTimerTests.framework */,
+				EFB29AD19056D2DF133AD258 /* libPods-SplitTimerTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,6 +139,7 @@
 				15ECEEE221553CD200109445 /* Sources */,
 				15ECEEE321553CD200109445 /* Frameworks */,
 				15ECEEE421553CD200109445 /* Resources */,
+				5382EE0F5ADDA86881EDBA6F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -247,6 +248,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5382EE0F5ADDA86881EDBA6F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-framework/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A56CE479725CAE1CB2A79A6A /* [CP] Check Pods Manifest.lock */ = {
