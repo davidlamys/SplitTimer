@@ -19,14 +19,16 @@ final class ViewControllerSpec: QuickSpec {
             var subject: ViewController!
             var mockViewModel: MockViewModel!
             var disposeBag: DisposeBag!
+
+            beforeEach {
+                disposeBag = DisposeBag()
+                mockViewModel = ViewControllerSpecHelper.makeMockViewModel()
+                subject = UIViewController.make(viewController: ViewController.self)
+                _ = subject.view
+                subject.viewModel = mockViewModel
+            }
+            
             context("Pipe UI events to view model") {
-                beforeEach {
-                    disposeBag = DisposeBag()
-                    mockViewModel = ViewControllerSpecHelper.makeMockViewModel()
-                    subject = UIViewController.make(viewController: ViewController.self)
-                    _ = subject.view
-                    subject.viewModel = mockViewModel
-                }
                 context("When primary button is pressed") {
                     var events: [Recorded<Event<Void>>]!
                     beforeEach {
