@@ -13,8 +13,8 @@ end
 target 'SplitTimerTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'RxBlocking', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
-    pod 'RxTest',     :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
-    pod 'Nimble', '~> 6.0.0'
-    pod 'Quick'
+    pod 'RxBlocking',   :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
+    pod 'RxTest',       :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
+    pod 'Nimble',       :git => 'https://github.com/Quick/Nimble.git', :branch => '7.x-branch'
+    pod 'Quick',        :git => 'https://github.com/Quick/Quick.git', :branch => '1.x-branch'
 end
