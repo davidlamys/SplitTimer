@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		15ECEEEA21553CD300109445 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECEEE921553CD300109445 /* AppDelegate.swift */; };
 		15ECEEEC21553CD300109445 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECEEEB21553CD300109445 /* ViewController.swift */; };
-		15ECEEEF21553CD300109445 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEED21553CD300109445 /* Main.storyboard */; };
+		15ECEEEF21553CD300109445 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEED21553CD300109445 /* ViewController.storyboard */; };
 		15ECEEF121553CD400109445 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEF021553CD400109445 /* Assets.xcassets */; };
 		15ECEEF421553CD400109445 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEF221553CD400109445 /* LaunchScreen.storyboard */; };
 		15ECEEFF21553CD400109445 /* SplitTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECEEFE21553CD400109445 /* SplitTimerTests.swift */; };
@@ -29,10 +29,11 @@
 
 /* Begin PBXFileReference section */
 		051A301E27B61F465605BEDA /* Pods-SplitTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer.debug.xcconfig"; sourceTree = "<group>"; };
+		1599E3AD215572E400523F26 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		15ECEEE621553CD300109445 /* SplitTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15ECEEE921553CD300109445 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15ECEEEB21553CD300109445 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		15ECEEEE21553CD300109445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		15ECEEEE21553CD300109445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ViewController.storyboard; sourceTree = "<group>"; };
 		15ECEEF021553CD400109445 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15ECEEF321553CD400109445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15ECEEF521553CD400109445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1599E3AC21556ABE00523F26 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1599E3AD215572E400523F26 /* UIViewController+Extension.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		15ECEEDD21553CD200109445 = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +100,7 @@
 			children = (
 				15ECEEE921553CD300109445 /* AppDelegate.swift */,
 				15ECEEEB21553CD300109445 /* ViewController.swift */,
-				15ECEEED21553CD300109445 /* Main.storyboard */,
+				15ECEEED21553CD300109445 /* ViewController.storyboard */,
 				15ECEEF021553CD400109445 /* Assets.xcassets */,
 				15ECEEF221553CD400109445 /* LaunchScreen.storyboard */,
 				15ECEEF521553CD400109445 /* Info.plist */,
@@ -214,7 +223,7 @@
 			files = (
 				15ECEEF421553CD400109445 /* LaunchScreen.storyboard in Resources */,
 				15ECEEF121553CD400109445 /* Assets.xcassets in Resources */,
-				15ECEEEF21553CD300109445 /* Main.storyboard in Resources */,
+				15ECEEEF21553CD300109445 /* ViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,12 +336,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		15ECEEED21553CD300109445 /* Main.storyboard */ = {
+		15ECEEED21553CD300109445 /* ViewController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				15ECEEEE21553CD300109445 /* Base */,
 			);
-			name = Main.storyboard;
+			name = ViewController.storyboard;
 			sourceTree = "<group>";
 		};
 		15ECEEF221553CD400109445 /* LaunchScreen.storyboard */ = {
