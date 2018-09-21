@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +12,60 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SplitTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zQS-fm-qx5">
+                                <rect key="frame" x="41.333333333333343" y="442.66666666666669" width="331.33333333333326" height="233.33333333333331"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0e-dt-msq">
+                                <rect key="frame" x="41.333333333333343" y="172.66666666666663" width="331.33333333333326" height="184"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="75"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kU-kc-fUk">
+                                <rect key="frame" x="41.333333333333336" y="392.33333333333331" width="44.000000000000007" height="47"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="25"/>
+                                <state key="normal" title="Lap"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eco-zO-6AO">
+                                <rect key="frame" x="315.66666666666669" y="392.33333333333331" width="57" height="47"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="25"/>
+                                <state key="normal" title="Start"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zQS-fm-qx5" firstAttribute="firstBaseline" secondItem="3kU-kc-fUk" secondAttribute="baseline" constant="17.666666666666668" symbolType="layoutAnchor" id="7Cl-qi-qD1"/>
+                            <constraint firstItem="Eco-zO-6AO" firstAttribute="top" secondItem="3kU-kc-fUk" secondAttribute="top" id="8R5-eP-hbb"/>
+                            <constraint firstItem="w0e-dt-msq" firstAttribute="leading" secondItem="3kU-kc-fUk" secondAttribute="leading" id="Brx-dx-LnP"/>
+                            <constraint firstItem="3kU-kc-fUk" firstAttribute="leading" secondItem="zQS-fm-qx5" secondAttribute="leading" id="ByV-pQ-Ycc"/>
+                            <constraint firstItem="zQS-fm-qx5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="FBt-FY-E4L"/>
+                            <constraint firstItem="3kU-kc-fUk" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.1" id="P4m-bD-5ca"/>
+                            <constraint firstItem="w0e-dt-msq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QSL-mw-LPE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zQS-fm-qx5" secondAttribute="bottom" constant="60" id="ToC-mS-2Pq"/>
+                            <constraint firstItem="zQS-fm-qx5" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="UiE-0m-6nq"/>
+                            <constraint firstItem="Eco-zO-6AO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3kU-kc-fUk" secondAttribute="trailing" constant="30" id="bHd-de-moY"/>
+                            <constraint firstItem="Eco-zO-6AO" firstAttribute="trailing" secondItem="zQS-fm-qx5" secondAttribute="trailing" id="deF-0f-a21"/>
+                            <constraint firstItem="w0e-dt-msq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.7" id="hkd-0Q-cmo"/>
+                            <constraint firstItem="w0e-dt-msq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="l1s-Ha-lbW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="primaryButton" destination="Eco-zO-6AO" id="YTP-7E-0A6"/>
+                        <outlet property="secondaryButton" destination="3kU-kc-fUk" id="CAA-RG-2Is"/>
+                        <outlet property="tableView" destination="zQS-fm-qx5" id="FAo-rR-HWR"/>
+                        <outlet property="timerLabel" destination="w0e-dt-msq" id="myg-Bg-LbQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>

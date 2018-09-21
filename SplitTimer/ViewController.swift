@@ -10,11 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var primaryButton: UIButton!
+    @IBOutlet weak var secondaryButton: UIButton!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-
 }
-
