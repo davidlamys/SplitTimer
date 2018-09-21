@@ -29,6 +29,7 @@ final class ViewController: UIViewController {
         disposeBag = DisposeBag()
         bindPrimaryButton(viewModel)
         bindSecondaryButton(viewModel)
+        bindTimerLabel(viewModel)
     }
     
     private func bindPrimaryButton(_ viewModel: ViewModelType) {
@@ -48,6 +49,12 @@ final class ViewController: UIViewController {
         
         viewModel.output.secondaryButtonTitleText
             .bind(to: self.secondaryButton.rx.title())
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindTimerLabel(_ viewModel: ViewModelType) {
+        viewModel.output.timerLabelText
+            .bind(to: self.timerLabel.rx.text)
             .disposed(by: disposeBag)
     }
 }

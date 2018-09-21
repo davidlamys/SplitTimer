@@ -22,4 +22,5 @@ protocol ViewModelInputType {
 protocol ViewModelOutputType {
     var primaryButtonTitleText: Observable<String> { get }
     var secondaryButtonTitleText: Observable<String> { get }
+    var timerLabelText: Observable<String> { get }
 }

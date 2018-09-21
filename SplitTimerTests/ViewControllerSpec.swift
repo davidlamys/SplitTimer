@@ -76,6 +76,16 @@ final class ViewControllerSpec: QuickSpec {
                         expect(subject.secondaryButton.currentTitle).to(equal("Good bye world"))
                     }
                 }
+                context("When view model has a new output for timer label text") {
+                    
+                    beforeEach {
+                        mockViewModel.mockTimerLabelText.onNext("25:25:25")
+                    }
+                    it("Should set title") {
+                        expect(subject.timerLabel.text).to(equal("25:25:25"))
+                    }
+                    
+                }
             }
         }
     }
@@ -101,5 +111,10 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     var mockSecondaryButtonTitleText = PublishSubject<String>()
     var secondaryButtonTitleText: Observable<String> {
         return mockSecondaryButtonTitleText.asObservable()
+    }
+    
+    var mockTimerLabelText = PublishSubject<String>()
+    var timerLabelText: Observable<String> {
+        return mockTimerLabelText.asObservable()
     }
 }
