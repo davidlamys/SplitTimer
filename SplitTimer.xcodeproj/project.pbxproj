@@ -12,7 +12,6 @@
 		15ECEEEF21553CD300109445 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEED21553CD300109445 /* ViewController.storyboard */; };
 		15ECEEF121553CD400109445 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEF021553CD400109445 /* Assets.xcassets */; };
 		15ECEEF421553CD400109445 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEF221553CD400109445 /* LaunchScreen.storyboard */; };
-		15ECEEFF21553CD400109445 /* SplitTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECEEFE21553CD400109445 /* SplitTimerTests.swift */; };
 		C10ED7E1134649AEDD1D076B /* libPods-SplitTimerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB29AD19056D2DF133AD258 /* libPods-SplitTimerTests.a */; };
 		EAFE1953D19B7ED05635C41F /* Pods_SplitTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA4AFA905DF76523676CF06 /* Pods_SplitTimer.framework */; };
 /* End PBXBuildFile section */
@@ -38,7 +37,6 @@
 		15ECEEF321553CD400109445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15ECEEF521553CD400109445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15ECEEFA21553CD400109445 /* SplitTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		15ECEEFE21553CD400109445 /* SplitTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTimerTests.swift; sourceTree = "<group>"; };
 		15ECEF0021553CD400109445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95798FAE12E4A8CECFC4BFCB /* Pods-SplitTimerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimerTests/Pods-SplitTimerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEE752F04DEC2C8BC8A4BF6F /* Pods-SplitTimerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimerTests/Pods-SplitTimerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 		15ECEEFD21553CD400109445 /* SplitTimerTests */ = {
 			isa = PBXGroup;
 			children = (
-				15ECEEFE21553CD400109445 /* SplitTimerTests.swift */,
 				15ECEF0021553CD400109445 /* Info.plist */,
 			);
 			path = SplitTimerTests;
@@ -323,7 +320,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15ECEEFF21553CD400109445 /* SplitTimerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
