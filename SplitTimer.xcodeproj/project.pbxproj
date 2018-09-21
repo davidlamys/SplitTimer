@@ -268,7 +268,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-framework/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-framework/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -312,7 +312,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1599E3AE215572E400523F26 /* UIViewController+Extension.swift in Sources */,
 				15ECEEEC21553CD300109445 /* ViewController.swift in Sources */,
+				1599E3B02155746500523F26 /* ViewModel.swift in Sources */,
 				15ECEEEA21553CD300109445 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
