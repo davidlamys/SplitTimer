@@ -117,6 +117,48 @@ final class ViewModelSpec: QuickSpec {
                                                  "Reset"]))
                     }
                 }
+                
+                context("when timer has started and secondary button receive inputs") {
+                    beforeEach {
+                        let testInput = {
+                            subject.primaryButtonTapEventObserver.onNext(())
+                            subject.secondaryButtonTapEventObserver.onNext(())
+                            subject.secondaryButtonTapEventObserver.onNext(())
+                        }
+                        titles = ObservableHelper
+                            .events(from: subject.secondaryButtonTitleText,
+                                    disposeBag: disposeBag,
+                                    executeBlock: testInput)
+                            .map({$0.value.element})
+                            .compactMap({ $0 })
+                    }
+                    it("should not toggle title") {
+                        expect(titles).to(equal(["Lap",
+                                                 "Lap"]))
+                    }
+                }
+                
+                context("when timer is paused and secondary button receive inputs") {
+                    beforeEach {
+                        let testInput = {
+                            subject.primaryButtonTapEventObserver.onNext(())
+                            subject.primaryButtonTapEventObserver.onNext(())
+                            subject.secondaryButtonTapEventObserver.onNext(())
+                            subject.secondaryButtonTapEventObserver.onNext(())
+                        }
+                        titles = ObservableHelper
+                            .events(from: subject.secondaryButtonTitleText,
+                                    disposeBag: disposeBag,
+                                    executeBlock: testInput)
+                            .map({$0.value.element})
+                            .compactMap({ $0 })
+                    }
+                    
+                    it("should toggle title") {
+                        expect(titles).to(equal(["Lap",
+                                                 "Lap",
+                                                 "Reset",
+                                                 "Lap"]))
                     }
                 }
             }

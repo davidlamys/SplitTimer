@@ -55,11 +55,24 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     }
     
     private var timerState: Observable<TimerState> {
-        return primaryButtonTapEventObserver
+        let stateFromPrimaryButton: Observable<TimerState> = primaryButtonTapEventObserver
             .scan(0, accumulator: { (sum, _) -> Int in return sum + 1 })
             .map({ $0 % 2 })
             .map({ $0 == 0 ? .paused : .started })
             .startWith(.cleared)
+        
+        let stateFromSecondaryButton: Observable<TimerState> = secondaryButtonTapEventObserver
+            .withLatestFrom(stateFromPrimaryButton)
+            .map({ state in
+                switch state {
+                case .started, .cleared: return state
+                case .paused: return .cleared
+                }
+            })
+        
+        return Observable
+            .merge(stateFromPrimaryButton, stateFromSecondaryButton)
+            .distinctUntilChanged()
             .share()
     }
     
