@@ -24,3 +24,31 @@ protocol ViewModelOutputType {
     var secondaryButtonTitleText: Observable<String> { get }
     var timerLabelText: Observable<String> { get }
 }
+
+struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
+    
+    var input: ViewModelInputType { return self }
+    var output: ViewModelOutputType { return self }
+    
+    // input
+    var primaryButtonTapEventObserver = PublishSubject<Void>()
+    var secondaryButtonTapEventObserver = PublishSubject<Void>()
+    
+    // output
+    var primaryButtonTitleText: Observable<String> {
+        return primaryButtonTapEventObserver
+            .scan(0, accumulator: { (sum, _) -> Int in return sum + 1 })
+            .map({ $0 % 2 })
+            .map({ $0 == 0 ? "Start" : "Stop"})
+            .startWith("Start")
+    }
+    
+    var secondaryButtonTitleText: Observable<String> {
+        return Observable.just("")
+    }
+    
+    var timerLabelText: Observable<String> {
+        return Observable.just("")
+    }
+    
+}
