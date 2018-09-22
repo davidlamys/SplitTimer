@@ -28,7 +28,8 @@ protocol ViewModelOutputType {
 struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     enum TimerState {
         case started
-        case stopped
+        case paused
+        case cleared
     }
     
     var input: ViewModelInputType { return self }
@@ -45,7 +46,8 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     }
     
     var secondaryButtonTitleText: Observable<String> {
-        return Observable.just("")
+        return timerState
+            .map(self.secondaryButtonTitle)
     }
     
     var timerLabelText: Observable<String> {
@@ -56,8 +58,8 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         return primaryButtonTapEventObserver
             .scan(0, accumulator: { (sum, _) -> Int in return sum + 1 })
             .map({ $0 % 2 })
-            .map({ $0 == 0 ? .stopped : .started })
-            .startWith(.stopped)
+            .map({ $0 == 0 ? .paused : .started })
+            .startWith(.cleared)
             .share()
     }
     
@@ -65,8 +67,17 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         switch timerState {
         case .started:
             return "Stop"
-        case .stopped:
+        case .paused, .cleared:
             return "Start"
+        }
+    }
+    
+    private func secondaryButtonTitle(for timerState: TimerState) -> String {
+        switch timerState {
+        case .started, .cleared:
+            return "Lap"
+        case .paused:
+            return "Reset"
         }
     }
 }

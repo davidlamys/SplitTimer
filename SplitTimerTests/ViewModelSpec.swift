@@ -24,6 +24,7 @@ final class ViewModelSpec: QuickSpec {
                 subject = ViewModel()
             }
             
+            // MARK: Primary button text output
             context("ViewModel should give correct output for Primary Button Text") {
                 
                 context("Initial value") {
@@ -54,7 +55,6 @@ final class ViewModelSpec: QuickSpec {
                             subject.primaryButtonTapEventObserver.onNext(())
                             subject.primaryButtonTapEventObserver.onNext(())
                         }
-                        
                         titles = ObservableHelper
                             .events(from: subject.primaryButtonTitleText,
                                     disposeBag: disposeBag,
@@ -63,7 +63,7 @@ final class ViewModelSpec: QuickSpec {
                             .compactMap({ $0 })
                         
                     }
-                    it("Output should be `Start`") {
+                    it("Output should be correct") {
                         expect(titles.count).to(be(5))
                         expect(titles[0]).to(be("Start"))
                         expect(titles[1]).to(be("Stop"))
@@ -72,6 +72,53 @@ final class ViewModelSpec: QuickSpec {
                         expect(titles[4]).to(be("Start"))
                     }
                 })
+            }
+            
+            // MARK: Secondary button text output
+            context("ViewModel should give correct output for Secondary Button Text") {
+                var titles: [String]!
+                
+                context("Initial value") {
+                    beforeEach {
+                        titles = ObservableHelper
+                            .events(from: subject.secondaryButtonTitleText,
+                                    disposeBag: disposeBag,
+                                    executeBlock: nil)
+                            .map({$0.value.element})
+                            .compactMap({ $0 })
+                        
+                    }
+                    it("Output should be `Lap`") {
+                        expect(titles.count).to(be(1))
+                        expect(titles.last).to(be("Lap"))
+                    }
+                }
+                
+                context("when receiving input from primary button") {
+                    beforeEach {
+                        let testInput = {
+                            subject.primaryButtonTapEventObserver.onNext(())
+                            subject.primaryButtonTapEventObserver.onNext(())
+                            subject.primaryButtonTapEventObserver.onNext(())
+                            subject.primaryButtonTapEventObserver.onNext(())
+                        }
+                        
+                        titles = ObservableHelper
+                            .events(from: subject.secondaryButtonTitleText,
+                                    disposeBag: disposeBag,
+                                    executeBlock: testInput)
+                            .map({$0.value.element})
+                            .compactMap({ $0 })
+                    }
+                    it("Should toggle from Lap to Reset and back to start based state of timer") {
+                        expect(titles.count).to(be(5))
+                        expect(titles[0]).to(be("Lap"))
+                        expect(titles[1]).to(be("Lap"))
+                        expect(titles[2]).to(be("Reset"))
+                        expect(titles[3]).to(be("Lap"))
+                        expect(titles[4]).to(be("Reset"))
+                    }
+                }
             }
         }
     }
