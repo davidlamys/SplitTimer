@@ -29,7 +29,7 @@ final class ViewControllerSpec: QuickSpec {
             }
             
             context("Pipe UI events to view model") {
-                context("When primary button is pressed") {
+                context("when primary button is pressed") {
                     var events: [Recorded<Event<Void>>]!
                     beforeEach {
                         events = ObservableHelper
@@ -39,11 +39,11 @@ final class ViewControllerSpec: QuickSpec {
                                         subject.primaryButton.sendActions(for: .touchUpInside)
                         })
                     }
-                    it("ViewModel should receive input") {
+                    it("should send input to view model") {
                         expect(events.count).to(be(1))
                     }
                 }
-                context("When secondary button is pressed") {
+                context("when secondary button is pressed") {
                     var events: [Recorded<Event<Void>>]!
                     beforeEach {
                         events = ObservableHelper
@@ -53,35 +53,35 @@ final class ViewControllerSpec: QuickSpec {
                                         subject.secondaryButton.sendActions(for: .touchUpInside)
                             })
                     }
-                    it("ViewModel should receive input") {
+                    it("should send input to view model") {
                         expect(events.count).to(be(1))
                     }
                 }
             }
             
             context("Reacting to view model output") {
-                context("When view model has a new output for primary button title text") {
+                context("when view model has a new output for primary button title text") {
                     beforeEach {
                         mockViewModel.mockPrimaryButtonTitleText.onNext("Hello world")
                     }
-                    it("Should set primary button title") {
+                    it("should set primary button title") {
                         expect(subject.primaryButton.currentTitle).to(equal("Hello world"))
                     }
                 }
-                context("When view model has a new output for secondary button title text") {
+                context("when view model has a new output for secondary button title text") {
                     beforeEach {
                         mockViewModel.mockSecondaryButtonTitleText.onNext("Good bye world")
                     }
-                    it("Should set secondary button title") {
+                    it("should set secondary button title") {
                         expect(subject.secondaryButton.currentTitle).to(equal("Good bye world"))
                     }
                 }
-                context("When view model has a new output for timer label text") {
+                context("when view model has a new output for timer label text") {
                     
                     beforeEach {
                         mockViewModel.mockTimerLabelText.onNext("25:25:25")
                     }
-                    it("Should set title") {
+                    it("should set title") {
                         expect(subject.timerLabel.text).to(equal("25:25:25"))
                     }
                     

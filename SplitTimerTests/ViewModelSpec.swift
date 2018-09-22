@@ -38,9 +38,9 @@ final class ViewModelSpec: QuickSpec {
                     }
                 }
                 
-                context("Should toggle from Start to Stop and back to start based on number of taps", {
                     var titles: [String]!
                     
+                context("Should toggle from Start to Stop and back to start based on number of taps") {
                     beforeEach {
                         let testInput = {
                             subject.primaryButtonTapEventObserver.onNext(())
@@ -66,13 +66,13 @@ final class ViewModelSpec: QuickSpec {
             context("ViewModel should give correct output for Secondary Button Text") {
                 var titles: [String]!
                 
-                context("Initial value") {
+                context("when setting initial value") {
                     beforeEach {
                         titles = ViewModelSpecHelper.getInitialTitle(from: subject.secondaryButtonTitleText)
                     }
-                    it("Output should be `Lap`") {
                         expect(titles.count).to(be(1))
                         expect(titles.last).to(be("Lap"))
+                    it("should produce 1 output: `Lap`") {
                     }
                 }
                 
@@ -88,7 +88,7 @@ final class ViewModelSpec: QuickSpec {
                         titles = ViewModelSpecHelper.getTitles(from: subject.secondaryButtonTitleText,
                                                                basedOn: testInput)
                     }
-                    it("Should toggle from Lap to Reset and back to start based state of timer") {
+                    it("should toggle from Lap to Reset and back to start based state of timer") {
                         expect(titles).to(equal(["Lap",
                                                  "Lap",
                                                  "Reset",
