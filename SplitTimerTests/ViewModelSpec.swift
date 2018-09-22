@@ -65,11 +65,11 @@ final class ViewModelSpec: QuickSpec {
                     }
                     it("Output should be `Start`") {
                         expect(titles.count).to(be(5))
-                        expect(titles).to(be(["Start",
-                                              "Stop",
-                                              "Start",
-                                              "Stop",
-                                              "Start"]))
+                        expect(titles[0]).to(be("Start"))
+                        expect(titles[1]).to(be("Stop"))
+                        expect(titles[2]).to(be("Start"))
+                        expect(titles[3]).to(be("Stop"))
+                        expect(titles[4]).to(be("Start"))
                     }
                 })
             }
