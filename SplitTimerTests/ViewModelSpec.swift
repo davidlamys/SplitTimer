@@ -17,10 +17,8 @@ final class ViewModelSpec: QuickSpec {
     override func spec() {
         describe("ViewModel spec") {
             var subject: ViewModel!
-            var disposeBag: DisposeBag!
             
             beforeEach {
-                disposeBag = DisposeBag()
                 subject = ViewModel()
             }
             
@@ -31,12 +29,7 @@ final class ViewModelSpec: QuickSpec {
                     var titles: [String]!
                     
                     beforeEach {
-                        titles = ObservableHelper
-                            .events(from: subject.primaryButtonTitleText,
-                                    disposeBag: disposeBag,
-                                    executeBlock: nil)
-                            .map({$0.value.element})
-                            .compactMap({ $0 })
+                        titles = ViewModelSpecHelper.getInitialTitle(from: subject.primaryButtonTitleText)
                         
                     }
                     it("Output should be `Start`") {
@@ -55,12 +48,8 @@ final class ViewModelSpec: QuickSpec {
                             subject.primaryButtonTapEventObserver.onNext(())
                             subject.primaryButtonTapEventObserver.onNext(())
                         }
-                        titles = ObservableHelper
-                            .events(from: subject.primaryButtonTitleText,
-                                    disposeBag: disposeBag,
-                                    executeBlock: testInput)
-                            .map({$0.value.element})
-                            .compactMap({ $0 })
+                        titles = ViewModelSpecHelper.getTitles(from: subject.primaryButtonTitleText,
+                                                               basedOn: testInput)
                         
                     }
                     it("Output should be correct") {
@@ -79,13 +68,7 @@ final class ViewModelSpec: QuickSpec {
                 
                 context("Initial value") {
                     beforeEach {
-                        titles = ObservableHelper
-                            .events(from: subject.secondaryButtonTitleText,
-                                    disposeBag: disposeBag,
-                                    executeBlock: nil)
-                            .map({$0.value.element})
-                            .compactMap({ $0 })
-                        
+                        titles = ViewModelSpecHelper.getInitialTitle(from: subject.secondaryButtonTitleText)
                     }
                     it("Output should be `Lap`") {
                         expect(titles.count).to(be(1))
@@ -102,12 +85,8 @@ final class ViewModelSpec: QuickSpec {
                             subject.primaryButtonTapEventObserver.onNext(())
                         }
                         
-                        titles = ObservableHelper
-                            .events(from: subject.secondaryButtonTitleText,
-                                    disposeBag: disposeBag,
-                                    executeBlock: testInput)
-                            .map({$0.value.element})
-                            .compactMap({ $0 })
+                        titles = ViewModelSpecHelper.getTitles(from: subject.secondaryButtonTitleText,
+                                                               basedOn: testInput)
                     }
                     it("Should toggle from Lap to Reset and back to start based state of timer") {
                         expect(titles).to(equal(["Lap",
@@ -125,12 +104,8 @@ final class ViewModelSpec: QuickSpec {
                             subject.secondaryButtonTapEventObserver.onNext(())
                             subject.secondaryButtonTapEventObserver.onNext(())
                         }
-                        titles = ObservableHelper
-                            .events(from: subject.secondaryButtonTitleText,
-                                    disposeBag: disposeBag,
-                                    executeBlock: testInput)
-                            .map({$0.value.element})
-                            .compactMap({ $0 })
+                        titles = ViewModelSpecHelper.getTitles(from: subject.secondaryButtonTitleText,
+                                                               basedOn: testInput)
                     }
                     it("should not toggle title") {
                         expect(titles).to(equal(["Lap",
@@ -146,12 +121,8 @@ final class ViewModelSpec: QuickSpec {
                             subject.secondaryButtonTapEventObserver.onNext(())
                             subject.secondaryButtonTapEventObserver.onNext(())
                         }
-                        titles = ObservableHelper
-                            .events(from: subject.secondaryButtonTitleText,
-                                    disposeBag: disposeBag,
-                                    executeBlock: testInput)
-                            .map({$0.value.element})
-                            .compactMap({ $0 })
+                        titles = ViewModelSpecHelper.getTitles(from: subject.secondaryButtonTitleText,
+                                                               basedOn: testInput)
                     }
                     
                     it("should toggle title") {
@@ -163,5 +134,29 @@ final class ViewModelSpec: QuickSpec {
                 }
             }
         }
+    }
+}
+
+struct ViewModelSpecHelper {
+    typealias Input = (()-> Void)
+    typealias TitleStream = Observable<String>
+    static func getTitles(from stream: TitleStream,
+                          basedOn input: @escaping Input,
+                          disposeBag: DisposeBag = DisposeBag()) -> [String] {
+        return ObservableHelper
+            .events(from: stream,
+                    disposeBag: disposeBag,
+                    executeBlock: input)
+            .map({$0.value.element})
+            .compactMap({ $0 })
+    }
+    static func getInitialTitle(from stream: TitleStream,
+                                disposeBag: DisposeBag = DisposeBag()) -> [String] {
+        return ObservableHelper
+            .events(from: stream,
+                    disposeBag: disposeBag,
+                    executeBlock: nil)
+            .map({$0.value.element})
+            .compactMap({ $0 })
     }
 }
