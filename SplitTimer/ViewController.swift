@@ -24,6 +24,14 @@ final class ViewController: UIViewController {
     }
     
     private var disposeBag = DisposeBag()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if viewModel == nil {
+            viewModel = ViewModel()
+        }
+    }
 
     private func setupBinding(_ viewModel: ViewModelType) {
         disposeBag = DisposeBag()
