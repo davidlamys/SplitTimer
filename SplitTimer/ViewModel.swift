@@ -26,12 +26,15 @@ protocol ViewModelOutputType {
     var secondaryButtonEnabled: Observable<Bool> { get }
 }
 
+enum TimerState {
+    case started
+    case paused
+    case cleared
+}
+
 struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
-    enum TimerState {
-        case started
-        case paused
-        case cleared
-    }
+    
+    private var disposeBag = DisposeBag()
     
     var input: ViewModelInputType { return self }
     var output: ViewModelOutputType { return self }
@@ -56,10 +59,8 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
             .debug()
             .map({
                 switch $0 {
-                case .started, .paused:
-                    return true
-                case .cleared:
-                    return false
+                case .started, .paused: return true
+                case .cleared: return false
                 }
             })
             .startWith(false)
@@ -67,8 +68,29 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     }
     
     var timerLabelText: Observable<String> {
-        return Observable.just("")
+        return timerLabelTextSource
     }
+    
+    init(timer: Observable<Void> = TimerFactory.makeTimer(),
+         timerStateStream: Observable<TimerState>? = nil) {
+        let stateStream = timerStateStream ?? self.timerState
+        
+        timer.withLatestFrom(stateStream)
+            .scan(0, accumulator: { (runningTime, latestState) -> Int in
+                switch latestState {
+                case .started: return runningTime + 1
+                case .paused: return runningTime
+                case .cleared: return 0
+                }
+            })
+            .distinctUntilChanged()
+            .map(stringFromTimeInterval)
+            .bind(to: timerLabelTextSource)
+            .disposed(by: disposeBag)
+    }
+    
+    private var timer: Observable<Int>!
+    private var timerLabelTextSource = PublishSubject<String>()
     
     private var timerState: Observable<TimerState> {
         let stateFromPrimaryButton: Observable<TimerState> = primaryButtonTapEventObserver
@@ -94,19 +116,23 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     
     private func primaryButtonTitle(for timerState: TimerState) -> String {
         switch timerState {
-        case .started:
-            return "Stop"
-        case .paused, .cleared:
-            return "Start"
+        case .started: return "Stop"
+        case .paused, .cleared: return "Start"
         }
     }
     
     private func secondaryButtonTitle(for timerState: TimerState) -> String {
         switch timerState {
-        case .started, .cleared:
-            return "Lap"
-        case .paused:
-            return "Reset"
+        case .started, .cleared: return "Lap"
+        case .paused: return "Reset"
         }
+    }
+}
+
+private struct TimerFactory {
+    static func makeTimer() -> Observable<Void> {
+        return Observable<Int>
+            .interval(0.1, scheduler: MainScheduler.instance)
+            .map({ _ in })
     }
 }

@@ -28,7 +28,7 @@ final class ViewModelSpec: QuickSpec {
                 
                 context("Initial value") {
                     beforeEach {
-                        titles = ViewModelSpecHelper.getInitialTitle(from: subject.primaryButtonTitleText)
+                        titles = ViewModelSpecHelper.getInitialText(from: subject.primaryButtonTitleText)
                     }
                     it("Output should be `Start`") {
                         expect(titles.count).to(be(1))
@@ -44,7 +44,7 @@ final class ViewModelSpec: QuickSpec {
                             subject.primaryButtonTapEventObserver.onNext(())
                             subject.primaryButtonTapEventObserver.onNext(())
                         }
-                        titles = ViewModelSpecHelper.getTitles(from: subject.primaryButtonTitleText,
+                        titles = ViewModelSpecHelper.getText(from: subject.primaryButtonTitleText,
                                                                basedOn: testInput)
                     }
                     it("Output should be correct") {
@@ -62,7 +62,7 @@ final class ViewModelSpec: QuickSpec {
                 
                 context("when setting initial value") {
                     beforeEach {
-                        titles = ViewModelSpecHelper.getInitialTitle(from: subject.secondaryButtonTitleText)
+                        titles = ViewModelSpecHelper.getInitialText(from: subject.secondaryButtonTitleText)
                     }
                     it("should produce 1 output: `Lap`") {
                         expect(titles).to(equal(["Lap"]))
@@ -78,7 +78,7 @@ final class ViewModelSpec: QuickSpec {
                             subject.primaryButtonTapEventObserver.onNext(())
                         }
                         
-                        titles = ViewModelSpecHelper.getTitles(from: subject.secondaryButtonTitleText,
+                        titles = ViewModelSpecHelper.getText(from: subject.secondaryButtonTitleText,
                                                                basedOn: testInput)
                     }
                     it("should toggle from Lap to Reset and back to start based state of timer") {
@@ -97,7 +97,7 @@ final class ViewModelSpec: QuickSpec {
                             subject.secondaryButtonTapEventObserver.onNext(())
                             subject.secondaryButtonTapEventObserver.onNext(())
                         }
-                        titles = ViewModelSpecHelper.getTitles(from: subject.secondaryButtonTitleText,
+                        titles = ViewModelSpecHelper.getText(from: subject.secondaryButtonTitleText,
                                                                basedOn: testInput)
                     }
                     it("should not toggle title") {
@@ -114,7 +114,7 @@ final class ViewModelSpec: QuickSpec {
                             subject.secondaryButtonTapEventObserver.onNext(())
                             subject.secondaryButtonTapEventObserver.onNext(())
                         }
-                        titles = ViewModelSpecHelper.getTitles(from: subject.secondaryButtonTitleText,
+                        titles = ViewModelSpecHelper.getText(from: subject.secondaryButtonTitleText,
                                                                basedOn: testInput)
                     }
                     it("should toggle title") {
@@ -129,6 +129,7 @@ final class ViewModelSpec: QuickSpec {
             // MARK: - Secondary Button Enablement
             context("Secondary button enablement") {
                 var buttonState: [Bool]!
+                
                 context("when view model is set up initially") {
                     beforeEach {
                         buttonState = ViewModelSpecHelper.getInitialEnableState(from: subject.secondaryButtonEnabled)
@@ -137,6 +138,7 @@ final class ViewModelSpec: QuickSpec {
                         expect(buttonState).to(equal([false]))
                     }
                 }
+                
                 context("when timer is started") {
                     beforeEach {
                         let testInput = {
@@ -149,6 +151,7 @@ final class ViewModelSpec: QuickSpec {
                         expect(buttonState).to(equal([false,
                                                       true]))
                     }
+                    
                     context("when split timing is triggered") {
                         beforeEach {
                             let testInput = {
@@ -166,7 +169,9 @@ final class ViewModelSpec: QuickSpec {
                                                           true]))
                         }
                     }
+                    
                 }
+                
                 context("when timer is paused") {
                     beforeEach {
                         let testInput = {
@@ -180,6 +185,7 @@ final class ViewModelSpec: QuickSpec {
                         expect(buttonState).to(equal([false,
                                                       true]))
                     }
+                    
                     context("when timer is resumed") {
                         beforeEach {
                             let testInput = {
@@ -195,6 +201,7 @@ final class ViewModelSpec: QuickSpec {
                                                           true]))
                         }
                     }
+                    
                     context("when timer is cleared") {
                         beforeEach {
                             let testInput = {
@@ -211,8 +218,79 @@ final class ViewModelSpec: QuickSpec {
                                                           false]))
                         }
                     }
+                    
                 }
                 
+            }
+            
+            // MARK: Timer text generation
+            context("Generating text for timer") {
+                var texts: [String]!
+                context("when user started and paused the timer after 2 ticks") {
+                    beforeEach {
+                        let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
+                        let stateStream = PublishSubject<TimerState>()
+                        subject = ViewModel(timer: timerSimulator, timerStateStream: stateStream)
+                        texts = ViewModelSpecHelper
+                            .getText(from: subject.timerLabelText,
+                                     basedOn: {
+                                        stateStream.onNext(.started)
+                                        timerSimulator.onNext(())
+                                        timerSimulator.onNext(())
+                                        stateStream.onNext(.paused)
+                                        timerSimulator.onNext(())
+                            })
+                    }
+                    it("should generate an array of 2 texts only") {
+                        expect(texts).to(equal(["00:00.1", "00:00.2"]))
+                    }
+                }
+                
+                context("when user start, paused after 2 ticks, and resume after 2 ticks") {
+                    beforeEach {
+                        let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
+                        let stateStream = PublishSubject<TimerState>()
+                        subject = ViewModel(timer: timerSimulator, timerStateStream: stateStream)
+                        texts = ViewModelSpecHelper
+                            .getText(from: subject.timerLabelText,
+                                     basedOn: {
+                                        stateStream.onNext(.started)
+                                        timerSimulator.onNext(())
+                                        timerSimulator.onNext(())
+                                        stateStream.onNext(.paused)
+                                        timerSimulator.onNext(())
+                                        timerSimulator.onNext(())
+                                        stateStream.onNext(.started)
+                                        timerSimulator.onNext(())
+                            })
+                    }
+                    it("should generate an array of 3 texts ") {
+                        expect(texts).to(equal(["00:00.1", "00:00.2", "00:00.3"]))
+                    }
+                }
+                
+                context("when user start, paused after 2 ticks, and clear after 2 ticks") {
+                    beforeEach {
+                        let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
+                        let stateStream = PublishSubject<TimerState>()
+                        subject = ViewModel(timer: timerSimulator, timerStateStream: stateStream)
+                        texts = ViewModelSpecHelper
+                            .getText(from: subject.timerLabelText,
+                                     basedOn: {
+                                        stateStream.onNext(.started)
+                                        timerSimulator.onNext(())
+                                        timerSimulator.onNext(())
+                                        stateStream.onNext(.paused)
+                                        timerSimulator.onNext(())
+                                        timerSimulator.onNext(())
+                                        stateStream.onNext(.cleared)
+                                        timerSimulator.onNext(())
+                            })
+                    }
+                    it("should generate an array of 3 texts ") {
+                        expect(texts).to(equal(["00:00.1", "00:00.2", "00:00.0"]))
+                    }
+                }
             }
         }
     }
@@ -222,9 +300,9 @@ struct ViewModelSpecHelper {
     typealias Input = (()-> Void)
     typealias TitleStream = Observable<String>
     
-    static func getTitles(from stream: TitleStream,
-                          basedOn input: @escaping Input,
-                          disposeBag: DisposeBag = DisposeBag()) -> [String] {
+    static func getText(from stream: TitleStream,
+                        basedOn input: @escaping Input,
+                        disposeBag: DisposeBag = DisposeBag()) -> [String] {
         return ObservableHelper
             .events(from: stream,
                     disposeBag: disposeBag,
@@ -233,8 +311,8 @@ struct ViewModelSpecHelper {
             .compactMap({ $0 })
     }
     
-    static func getInitialTitle(from stream: TitleStream,
-                                disposeBag: DisposeBag = DisposeBag()) -> [String] {
+    static func getInitialText(from stream: TitleStream,
+                               disposeBag: DisposeBag = DisposeBag()) -> [String] {
         return ObservableHelper
             .events(from: stream,
                     disposeBag: disposeBag,
