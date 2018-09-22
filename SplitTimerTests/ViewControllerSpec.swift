@@ -77,14 +77,12 @@ final class ViewControllerSpec: QuickSpec {
                     }
                 }
                 context("when view model has a new output for timer label text") {
-                    
                     beforeEach {
                         mockViewModel.mockTimerLabelText.onNext("25:25:25")
                     }
                     it("should set title") {
                         expect(subject.timerLabel.text).to(equal("25:25:25"))
                     }
-                    
                 }
             }
         }
@@ -98,6 +96,7 @@ struct ViewControllerSpecHelper {
 }
 
 class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
+    
     var input: ViewModelInputType { return self }
     var output: ViewModelOutputType { return self }
     var primaryButtonTapEventObserver = PublishSubject<Void>()

@@ -17,7 +17,8 @@ final class ViewModelSpec: QuickSpec {
     override func spec() {
         describe("ViewModel spec") {
             var subject: ViewModel!
-            
+            var titles: [String]!
+
             beforeEach {
                 subject = ViewModel()
             }
@@ -26,11 +27,8 @@ final class ViewModelSpec: QuickSpec {
             context("ViewModel should give correct output for Primary Button Text") {
                 
                 context("Initial value") {
-                    var titles: [String]!
-                    
                     beforeEach {
                         titles = ViewModelSpecHelper.getInitialTitle(from: subject.primaryButtonTitleText)
-                        
                     }
                     it("Output should be `Start`") {
                         expect(titles.count).to(be(1))
@@ -38,8 +36,6 @@ final class ViewModelSpec: QuickSpec {
                     }
                 }
                 
-                    var titles: [String]!
-                    
                 context("Should toggle from Start to Stop and back to start based on number of taps") {
                     beforeEach {
                         let testInput = {
@@ -50,7 +46,6 @@ final class ViewModelSpec: QuickSpec {
                         }
                         titles = ViewModelSpecHelper.getTitles(from: subject.primaryButtonTitleText,
                                                                basedOn: testInput)
-                        
                     }
                     it("Output should be correct") {
                         expect(titles).to(equal(["Start",
@@ -59,20 +54,18 @@ final class ViewModelSpec: QuickSpec {
                                                  "Stop",
                                                  "Start"]))
                     }
-                })
+                }
             }
             
             // MARK: Secondary button text output
             context("ViewModel should give correct output for Secondary Button Text") {
-                var titles: [String]!
                 
                 context("when setting initial value") {
                     beforeEach {
                         titles = ViewModelSpecHelper.getInitialTitle(from: subject.secondaryButtonTitleText)
                     }
-                        expect(titles.count).to(be(1))
-                        expect(titles.last).to(be("Lap"))
                     it("should produce 1 output: `Lap`") {
+                        expect(titles).to(equal(["Lap"]))
                     }
                 }
                 
@@ -124,7 +117,6 @@ final class ViewModelSpec: QuickSpec {
                         titles = ViewModelSpecHelper.getTitles(from: subject.secondaryButtonTitleText,
                                                                basedOn: testInput)
                     }
-                    
                     it("should toggle title") {
                         expect(titles).to(equal(["Lap",
                                                  "Lap",
