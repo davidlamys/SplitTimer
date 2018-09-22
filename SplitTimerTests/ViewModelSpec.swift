@@ -125,6 +125,78 @@ final class ViewModelSpec: QuickSpec {
                     }
                 }
             }
+            
+            // MARK: - Secondary Button Enablement
+            context("Secondary button enablement") {
+                var buttonState: [Bool]!
+                context("when view model is set up initially") {
+                    beforeEach {
+                        buttonState = ViewModelSpecHelper.getInitialEnableState(from: subject.secondaryButtonEnabled)
+                    }
+                    it("should disable secondary button") {
+                        expect(buttonState).to(equal([false]))
+                    }
+                }
+                context("when timer is started") {
+                    beforeEach {
+                        let testInput = {
+                            subject.primaryButtonTapEventObserver.onNext(())
+                        }
+                        buttonState = ViewModelSpecHelper.getEnableStates(from: subject.secondaryButtonEnabled,
+                                                                          basedOn: testInput)
+                    }
+                    it("should toggle state") {
+                        expect(buttonState).to(equal([false,
+                                                      true]))
+                    }
+                }
+                context("when timer is paused") {
+                    beforeEach {
+                        let testInput = {
+                            subject.primaryButtonTapEventObserver.onNext(())
+                            subject.primaryButtonTapEventObserver.onNext(())
+                        }
+                        buttonState = ViewModelSpecHelper.getEnableStates(from: subject.secondaryButtonEnabled,
+                                                                     basedOn: testInput)
+                    }
+                    it("should toggle state") {
+                        expect(buttonState).to(equal([false,
+                                                      true]))
+                    }
+                    context("when timer is resumed") {
+                        beforeEach {
+                            let testInput = {
+                                subject.primaryButtonTapEventObserver.onNext(())
+                                subject.primaryButtonTapEventObserver.onNext(())
+                                subject.primaryButtonTapEventObserver.onNext(())
+                            }
+                            buttonState = ViewModelSpecHelper.getEnableStates(from: subject.secondaryButtonEnabled,
+                                                                              basedOn: testInput)
+                        }
+                        it("should toggle state") {
+                            expect(buttonState).to(equal([false,
+                                                          true]))
+                        }
+                    }
+                    context("when timer is cleared") {
+                        beforeEach {
+                            let testInput = {
+                                subject.primaryButtonTapEventObserver.onNext(())
+                                subject.primaryButtonTapEventObserver.onNext(())
+                                subject.secondaryButtonTapEventObserver.onNext(())
+                            }
+                            buttonState = ViewModelSpecHelper.getEnableStates(from: subject.secondaryButtonEnabled,
+                                                                              basedOn: testInput)
+                        }
+                        it("should toggle state") {
+                            expect(buttonState).to(equal([false,
+                                                          true,
+                                                          false]))
+                        }
+                    }
+                }
+                
+            }
         }
     }
 }
@@ -132,6 +204,7 @@ final class ViewModelSpec: QuickSpec {
 struct ViewModelSpecHelper {
     typealias Input = (()-> Void)
     typealias TitleStream = Observable<String>
+    
     static func getTitles(from stream: TitleStream,
                           basedOn input: @escaping Input,
                           disposeBag: DisposeBag = DisposeBag()) -> [String] {
@@ -139,16 +212,38 @@ struct ViewModelSpecHelper {
             .events(from: stream,
                     disposeBag: disposeBag,
                     executeBlock: input)
-            .map({$0.value.element})
+            .map({ $0.value.element })
             .compactMap({ $0 })
     }
+    
     static func getInitialTitle(from stream: TitleStream,
                                 disposeBag: DisposeBag = DisposeBag()) -> [String] {
         return ObservableHelper
             .events(from: stream,
                     disposeBag: disposeBag,
                     executeBlock: nil)
-            .map({$0.value.element})
+            .map({ $0.value.element })
+            .compactMap({ $0 })
+    }
+    
+    static func getInitialEnableState(from stream: Observable<Bool>,
+                                      disposeBag: DisposeBag = DisposeBag()) -> [Bool] {
+        return ObservableHelper
+            .events(from: stream,
+                    disposeBag: disposeBag,
+                    executeBlock: nil)
+            .map({ $0.value.element })
+            .compactMap({ $0 })
+    }
+    
+    static func getEnableStates(from stream: Observable<Bool>,
+                                basedOn input: @escaping Input,
+                                disposeBag: DisposeBag = DisposeBag()) -> [Bool] {
+        return ObservableHelper
+            .events(from: stream,
+                    disposeBag: disposeBag,
+                    executeBlock: input)
+            .map({ $0.value.element })
             .compactMap({ $0 })
     }
 }

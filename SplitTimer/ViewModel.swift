@@ -23,6 +23,7 @@ protocol ViewModelOutputType {
     var primaryButtonTitleText: Observable<String> { get }
     var secondaryButtonTitleText: Observable<String> { get }
     var timerLabelText: Observable<String> { get }
+    var secondaryButtonEnabled: Observable<Bool> { get }
 }
 
 struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
@@ -48,6 +49,21 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     var secondaryButtonTitleText: Observable<String> {
         return timerState
             .map(self.secondaryButtonTitle)
+    }
+    
+    var secondaryButtonEnabled: Observable<Bool> {
+        return timerState
+            .debug()
+            .map({
+                switch $0 {
+                case .started, .paused:
+                    return true
+                case .cleared:
+                    return false
+                }
+            })
+            .startWith(false)
+            .distinctUntilChanged()
     }
     
     var timerLabelText: Observable<String> {

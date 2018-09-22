@@ -84,6 +84,24 @@ final class ViewControllerSpec: QuickSpec {
                         expect(subject.timerLabel.text).to(equal("25:25:25"))
                     }
                 }
+                context("when view model sends signal to enable secondary button") {
+                    beforeEach {
+                        subject.secondaryButton.isEnabled = false
+                        mockViewModel.mockSecondaryButtonEnable.onNext(true)
+                    }
+                    it("should enable secondary button") {
+                        expect(subject.secondaryButton.isEnabled).to(beTrue())
+                    }
+                }
+                context("when view model sends signal to disable secondary button") {
+                    beforeEach {
+                        subject.secondaryButton.isEnabled = true
+                        mockViewModel.mockSecondaryButtonEnable.onNext(false)
+                    }
+                    it("should disable secondary button") {
+                        expect(subject.secondaryButton.isEnabled).to(beFalse())
+                    }
+                }
             }
         }
     }
@@ -112,6 +130,11 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         return mockSecondaryButtonTitleText.asObservable()
     }
     
+    var mockSecondaryButtonEnable = PublishSubject<Bool>()
+    var secondaryButtonEnabled: Observable<Bool> {
+        return mockSecondaryButtonEnable.asObservable()
+    }
+
     var mockTimerLabelText = PublishSubject<String>()
     var timerLabelText: Observable<String> {
         return mockTimerLabelText.asObservable()

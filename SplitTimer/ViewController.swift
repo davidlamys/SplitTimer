@@ -58,6 +58,10 @@ final class ViewController: UIViewController {
         viewModel.output.secondaryButtonTitleText
             .bind(to: self.secondaryButton.rx.title())
             .disposed(by: disposeBag)
+        
+        viewModel.output.secondaryButtonEnabled
+            .bind(to: self.secondaryButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
     
     private func bindTimerLabel(_ viewModel: ViewModelType) {
