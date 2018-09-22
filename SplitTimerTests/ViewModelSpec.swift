@@ -149,6 +149,23 @@ final class ViewModelSpec: QuickSpec {
                         expect(buttonState).to(equal([false,
                                                       true]))
                     }
+                    context("when split timing is triggered") {
+                        beforeEach {
+                            let testInput = {
+                                subject.primaryButtonTapEventObserver.onNext(())
+                                subject.secondaryButtonTapEventObserver.onNext(())
+                                subject.secondaryButtonTapEventObserver.onNext(())
+                                subject.secondaryButtonTapEventObserver.onNext(())
+                                subject.secondaryButtonTapEventObserver.onNext(())
+                            }
+                            buttonState = ViewModelSpecHelper.getEnableStates(from: subject.secondaryButtonEnabled,
+                                                                              basedOn: testInput)
+                        }
+                        it("should toggle state") {
+                            expect(buttonState).to(equal([false,
+                                                          true]))
+                        }
+                    }
                 }
                 context("when timer is paused") {
                     beforeEach {
