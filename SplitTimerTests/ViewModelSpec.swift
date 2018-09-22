@@ -64,12 +64,11 @@ final class ViewModelSpec: QuickSpec {
                         
                     }
                     it("Output should be correct") {
-                        expect(titles.count).to(be(5))
-                        expect(titles[0]).to(be("Start"))
-                        expect(titles[1]).to(be("Stop"))
-                        expect(titles[2]).to(be("Start"))
-                        expect(titles[3]).to(be("Stop"))
-                        expect(titles[4]).to(be("Start"))
+                        expect(titles).to(equal(["Start",
+                                                 "Stop",
+                                                 "Start",
+                                                 "Stop",
+                                                 "Start"]))
                     }
                 })
             }
@@ -111,12 +110,13 @@ final class ViewModelSpec: QuickSpec {
                             .compactMap({ $0 })
                     }
                     it("Should toggle from Lap to Reset and back to start based state of timer") {
-                        expect(titles.count).to(be(5))
-                        expect(titles[0]).to(be("Lap"))
-                        expect(titles[1]).to(be("Lap"))
-                        expect(titles[2]).to(be("Reset"))
-                        expect(titles[3]).to(be("Lap"))
-                        expect(titles[4]).to(be("Reset"))
+                        expect(titles).to(equal(["Lap",
+                                                 "Lap",
+                                                 "Reset",
+                                                 "Lap",
+                                                 "Reset"]))
+                    }
+                }
                     }
                 }
             }
