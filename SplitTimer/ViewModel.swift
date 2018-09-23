@@ -75,13 +75,7 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         let stateStream = timerStateStream ?? self.timerState
         
         timer.withLatestFrom(stateStream)
-            .scan(0, accumulator: { (runningTime, latestState) -> Int in
-                switch latestState {
-                case .started: return runningTime + 1
-                case .paused: return runningTime
-                case .cleared: return 0
-                }
-            })
+            .scan(0, accumulator: calculateRunningTime)
             .distinctUntilChanged()
             .map(stringFromTimeInterval)
             .bind(to: timerLabelTextSource)
@@ -111,6 +105,14 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
             .merge(stateFromPrimaryButton, stateFromSecondaryButton)
             .distinctUntilChanged()
             .share()
+    }
+    
+    private func calculateRunningTime(runningTime: Int, latestState: TimerState) -> Int {
+        switch latestState {
+        case .started: return runningTime + 1
+        case .paused: return runningTime
+        case .cleared: return 0
+        }
     }
     
     private func primaryButtonTitle(for timerState: TimerState) -> String {
