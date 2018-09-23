@@ -73,9 +73,8 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     }
 
     var lapTimeTexts: Observable<[String]> {
-        return Observable.empty()
+        return splitTimings.map({ $0.map(stringFromTimeInterval) })
     }
-    
     
     init(timer: Observable<Void> = TimerFactory.makeTimer(),
          timerStateStream: Observable<TimerState>? = nil) {
@@ -111,6 +110,57 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
             .merge(stateFromPrimaryButton, stateFromSecondaryButton)
             .distinctUntilChanged()
             .share()
+    }
+    
+    private var splitTimings: Observable<[Int]> {
+        return Observable.combineLatest(currentRunningTime, lapCount)
+            .scan([Int]()) { (currentArray, arg1) -> [Int] in
+                var timings = currentArray
+                let (runningTime, lapCount) = arg1
+                
+                guard lapCount != 0 else {
+                    return []
+                }
+                
+                if currentArray.count == lapCount {
+                    timings[0] = runningTime
+                    return timings
+                } else {
+                    timings.insert(runningTime, at: 0)
+                    return timings
+                }
+        }
+    }
+    
+    private var lapCount: Observable<Int> {
+        enum SplitLapCommand {
+            case addLaps
+            case reset
+        }
+        
+        let splitButtonPressed = secondaryButtonTapEventObserver
+            .withLatestFrom(timerState)
+            .filter({ $0 == .started })
+            .map({ _ in SplitLapCommand.addLaps })
+        
+        let start = timerState
+            .scan((nil, nil), accumulator: { ($0.1, $1) })
+            .filter({ $0 == (.cleared, .started) })
+            .map({ _ in SplitLapCommand.addLaps })
+        
+        let resetLaps = timerState
+            .filter({ $0 == .cleared })
+            .map({ _ in SplitLapCommand.reset })
+        
+        return Observable.merge(start,
+                                splitButtonPressed,
+                                resetLaps)
+            .scan(0, accumulator: { (runningCount, command) in
+                switch command {
+                case .addLaps: return runningCount + 1
+                case .reset: return 0
+                }
+            })
     }
     
     private func calculateRunningTime(runningTime: Int, latestState: TimerState) -> Int {
