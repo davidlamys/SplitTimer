@@ -56,7 +56,6 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     
     var secondaryButtonEnabled: Observable<Bool> {
         return timerState
-            .debug()
             .map({
                 switch $0 {
                 case .started, .paused: return true
