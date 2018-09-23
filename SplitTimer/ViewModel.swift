@@ -22,8 +22,9 @@ protocol ViewModelInputType {
 protocol ViewModelOutputType {
     var primaryButtonTitleText: Observable<String> { get }
     var secondaryButtonTitleText: Observable<String> { get }
-    var timerLabelText: Observable<String> { get }
     var secondaryButtonEnabled: Observable<Bool> { get }
+    var timerLabelText: Observable<String> { get }
+    var lapTimeTexts: Observable<[String]> { get }
 }
 
 enum TimerState {
@@ -70,6 +71,11 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         return currentRunningTime
             .map(stringFromTimeInterval)
     }
+
+    var lapTimeTexts: Observable<[String]> {
+        return Observable.empty()
+    }
+    
     
     init(timer: Observable<Void> = TimerFactory.makeTimer(),
          timerStateStream: Observable<TimerState>? = nil) {

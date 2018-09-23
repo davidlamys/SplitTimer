@@ -102,6 +102,14 @@ final class ViewControllerSpec: QuickSpec {
                         expect(subject.secondaryButton.isEnabled).to(beFalse())
                     }
                 }
+                context("when view model sends an array of 2 laptime texts") {
+                    beforeEach {
+                        mockViewModel.mockLapTimeTexts.onNext(["123", "456"])
+                    }
+                    it("should increase table view count") {
+                        expect(subject.tableView.numberOfRows(inSection: 0)).to(equal(2))
+                    }
+                }
             }
         }
     }
@@ -139,4 +147,10 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     var timerLabelText: Observable<String> {
         return mockTimerLabelText.asObservable()
     }
+    
+    var mockLapTimeTexts = PublishSubject<[String]>()
+    var lapTimeTexts: Observable<[String]> {
+        return mockLapTimeTexts
+    }
+
 }

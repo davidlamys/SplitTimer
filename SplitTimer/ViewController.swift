@@ -38,6 +38,7 @@ final class ViewController: UIViewController {
         bindPrimaryButton(viewModel)
         bindSecondaryButton(viewModel)
         bindTimerLabel(viewModel)
+        bindTableView(viewModel)
     }
     
     private func bindPrimaryButton(_ viewModel: ViewModelType) {
@@ -67,6 +68,14 @@ final class ViewController: UIViewController {
     private func bindTimerLabel(_ viewModel: ViewModelType) {
         viewModel.output.timerLabelText
             .bind(to: self.timerLabel.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindTableView(_ viewModel: ViewModelType) {
+        viewModel.output.lapTimeTexts
+            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _, model, cell in
+                cell.textLabel?.text = model
+            }
             .disposed(by: disposeBag)
     }
 }
