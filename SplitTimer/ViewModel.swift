@@ -67,7 +67,8 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     }
     
     var timerLabelText: Observable<String> {
-        return timerLabelTextSource
+        return currentRunningTime
+            .map(stringFromTimeInterval)
     }
     
     init(timer: Observable<Void> = TimerFactory.makeTimer(),
@@ -77,14 +78,13 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         timer.withLatestFrom(stateStream)
             .scan(0, accumulator: calculateRunningTime)
             .distinctUntilChanged()
-            .map(stringFromTimeInterval)
-            .bind(to: timerLabelTextSource)
+            .bind(to: currentRunningTime)
             .disposed(by: disposeBag)
     }
     
     private var timer: Observable<Int>!
-    private var timerLabelTextSource = PublishSubject<String>()
-    
+    private var currentRunningTime = PublishSubject<Int>()
+
     private var timerState: Observable<TimerState> {
         let stateFromPrimaryButton: Observable<TimerState> = primaryButtonTapEventObserver
             .scan(0, accumulator: { (sum, _) -> Int in return sum + 1 })
