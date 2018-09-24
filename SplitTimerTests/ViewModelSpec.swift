@@ -314,9 +314,9 @@ final class ViewModelSpec: QuickSpec {
                             })
                     }
                     it("should generate an array of 3 texts only") {
-                        expect(lapTimingsTexts).to(equal([["00:00.1"],
-                                                          ["00:00.2"],
-                                                          ["00:00.3"]]))
+                        expect(lapTimingsTexts).to(equal([["00:00.1 - 00:00.1"],
+                                                          ["00:00.2 - 00:00.2"],
+                                                          ["00:00.3 - 00:00.3"]]))
                     }
                 }
                 context("when user started and split after 2 ticks and split again, and finally paused timer after 2 ticks") {
@@ -338,12 +338,12 @@ final class ViewModelSpec: QuickSpec {
                             })
                     }
                     it("should generate an array of 2 texts only") {
-                        expect(lapTimingsTexts).to(equal([["00:00.1"],
-                                                          ["00:00.2"],
-                                                          ["00:00.2", "00:00.2"],
-                                                          ["00:00.3", "00:00.2"],
-                                                          ["00:00.3", "00:00.3", "00:00.2"],
-                                                          ["00:00.4", "00:00.3", "00:00.2"]]))
+                        expect(lapTimingsTexts).to(equal([["00:00.1 - 00:00.1"],
+                                                          ["00:00.2 - 00:00.2"],
+                                                          ["00:00.0 - 00:00.2", "00:00.2 - 00:00.2"],
+                                                          ["00:00.1 - 00:00.3", "00:00.2 - 00:00.2"],
+                                                          ["00:00.0 - 00:00.3", "00:00.1 - 00:00.3", "00:00.2 - 00:00.2"],
+                                                          ["00:00.1 - 00:00.4", "00:00.1 - 00:00.3", "00:00.2 - 00:00.2"]]))
                     }
                 }
             }

@@ -73,7 +73,16 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     }
 
     var lapTimeTexts: Observable<[String]> {
-        return splitTimings.map({ $0.map(stringFromTimeInterval) })
+        let lapsStream = lapTimings.map({ $0.map(stringFromTimeInterval) })
+        let splitsStream = splitTimings.map({ $0.map(stringFromTimeInterval) })
+        return Observable
+            .zip(lapsStream, splitsStream)
+            .map({ (laps, splits) in
+                return zip(laps, splits)
+                    .map({ (lap, split) -> String in
+                        "\(lap) - \(split)"
+                    })
+            })
     }
     
     init(timer: Observable<Void> = TimerFactory.makeTimer(),
@@ -127,6 +136,32 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
                     return timings
                 } else {
                     timings.insert(runningTime, at: 0)
+                    return timings
+                }
+        }
+    }
+    
+    private var lapTimings: Observable<[Int]> {
+        return Observable.combineLatest(currentRunningTime, lapCount)
+            .scan([Int]()) { (currentArray, arg1) -> [Int] in
+                var timings = currentArray
+                let (runningTime, lapCount) = arg1
+                
+                guard lapCount != 0 else {
+                    return []
+                }
+                
+                if lapCount == 1 && runningTime == 1 {
+                    return [1]
+                }
+                
+                let totalTimeBeforeCurrentLap = currentArray.reduce(-(currentArray.first ?? 0), +)
+                let currentLapTime = runningTime - totalTimeBeforeCurrentLap
+                if currentArray.count == lapCount {
+                    timings[0] = currentLapTime
+                    return timings
+                } else {
+                    timings.insert(0, at: 0)
                     return timings
                 }
         }
