@@ -115,15 +115,15 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     
     private var splitTimings: Observable<[Int]> {
         return Observable.combineLatest(currentRunningTime, lapCount)
-            .scan([Int]()) { (currentArray, arg1) -> [Int] in
-                var timings = currentArray
-                let (runningTime, lapCount) = arg1
+            .scan([Int]()) { (timingArray, latestInput) -> [Int] in
+                let (runningTime, lapCount) = latestInput
                 
                 guard lapCount != 0 else {
                     return []
                 }
                 
-                if currentArray.count == lapCount {
+                var timings = timingArray
+                if timings.count == lapCount {
                     timings[0] = runningTime
                     return timings
                 } else {
@@ -135,9 +135,8 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     
     private var lapTimings: Observable<[Int]> {
         return Observable.combineLatest(currentRunningTime, lapCount)
-            .scan([Int]()) { (currentArray, arg1) -> [Int] in
-                var timings = currentArray
-                let (runningTime, lapCount) = arg1
+            .scan([Int]()) { (currentArray, latestInput) -> [Int] in
+                let (runningTime, lapCount) = latestInput
                 
                 guard lapCount != 0 else {
                     return []
@@ -147,6 +146,7 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
                     return [1]
                 }
                 
+                var timings = currentArray
                 let totalTimeBeforeCurrentLap = currentArray.reduce(-(currentArray.first ?? 0), +)
                 let currentLapTime = runningTime - totalTimeBeforeCurrentLap
                 if currentArray.count == lapCount {
