@@ -347,6 +347,68 @@ final class ViewModelSpec: QuickSpec {
                     }
                 }
             }
+            // MARK: - Generate text for split timings
+            context("Generating cellModels for split timings") {
+                var cellModels: [[CellModel]]!
+                context("when user started and paused the timer after 2 ticks") {
+                    beforeEach {
+                        let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
+                        subject = ViewModel(timer: timerSimulator)
+                        cellModels = ViewModelSpecHelper
+                            .getValues(from: subject.cellModels,
+                                       basedOn: {
+                                        subject.primaryButtonTapEventObserver.onNext(())
+                                        timerSimulator.onNext(())
+                                        timerSimulator.onNext(())
+                                        subject.primaryButtonTapEventObserver.onNext(())
+                                        timerSimulator.onNext(())
+                                        subject.primaryButtonTapEventObserver.onNext(())
+                                        timerSimulator.onNext(())
+                                        
+                            })
+                    }
+                    it("should generate an array of 3 cell models only") {
+                        let expectedCellModels = [[CellModel(lapTime: 1, splitTime: 1)],
+                                                  [CellModel(lapTime: 2, splitTime: 2)],
+                                                  [CellModel(lapTime: 3, splitTime: 3)]]
+                        
+                        expect(cellModels).to(equal(expectedCellModels))
+                    }
+                }
+                context("when user started and split after 2 ticks and split again, and finally paused timer after 2 ticks") {
+                    beforeEach {
+                        let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
+                        subject = ViewModel(timer: timerSimulator)
+                        cellModels = ViewModelSpecHelper
+                            .getValues(from: subject.cellModels,
+                                       basedOn: {
+                                        subject.primaryButtonTapEventObserver.onNext(())
+                                        timerSimulator.onNext(())
+                                        timerSimulator.onNext(())
+                                        subject.secondaryButtonTapEventObserver.onNext(())
+                                        timerSimulator.onNext(())
+                                        subject.secondaryButtonTapEventObserver.onNext(())
+                                        timerSimulator.onNext(())
+                                        subject.primaryButtonTapEventObserver.onNext(())
+                                        timerSimulator.onNext(())
+                            })
+                    }
+                    it("should generate an array of 2 texts only") {
+                        let firstLap = CellModel(lapTime: 2, splitTime: 2)
+                        let secondLap = CellModel(lapTime: 1, splitTime: 3)
+                        let thirdLap = CellModel(lapTime: 1, splitTime: 4)
+                        
+                        let expectedCellModels = [[CellModel(lapTime: 1, splitTime: 1)],
+                                                  [firstLap],
+                                                  [CellModel(lapTime: 0, splitTime: 2), firstLap],
+                                                  [secondLap, firstLap],
+                                                  [CellModel(lapTime: 0, splitTime: 3), secondLap, firstLap],
+                                                  [thirdLap, secondLap, firstLap]]
+
+                        expect(cellModels).to(equal(expectedCellModels))
+                    }
+                }
+            }
         }
     }
 }

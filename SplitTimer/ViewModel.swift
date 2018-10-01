@@ -81,7 +81,14 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     }
     
     var cellModels: Observable<[CellModel]> {
-        return Observable.empty()
+        return Observable
+            .zip(lapTimings, splitTimings)
+            .map({ (laps, splits) in
+                return zip(laps, splits)
+                    .map({ (lap, split) -> CellModel in
+                        return CellModel(lapTime: lap, splitTime: split)
+                    })
+            })
     }
     
     init(timer: Observable<Void> = TimerFactory.makeTimer(),
