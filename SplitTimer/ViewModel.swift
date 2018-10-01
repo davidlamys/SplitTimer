@@ -24,7 +24,6 @@ protocol ViewModelOutputType {
     var secondaryButtonTitleText: Observable<String> { get }
     var secondaryButtonEnabled: Observable<Bool> { get }
     var timerLabelText: Observable<String> { get }
-    var lapTimeTexts: Observable<[String]> { get }
     var cellModels: Observable<[CellModel]> { get }
 }
 
@@ -65,19 +64,6 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     var timerLabelText: Observable<String> {
         return currentRunningTime
             .map(stringFromTimeInterval)
-    }
-
-    var lapTimeTexts: Observable<[String]> {
-        let lapsStream = lapTimings.map({ $0.map(stringFromTimeInterval) })
-        let splitsStream = splitTimings.map({ $0.map(stringFromTimeInterval) })
-        return Observable
-            .zip(lapsStream, splitsStream)
-            .map({ (laps, splits) in
-                return zip(laps, splits)
-                    .map({ (lap, split) -> String in
-                        "\(lap) - \(split)"
-                    })
-            })
     }
     
     var cellModels: Observable<[CellModel]> {

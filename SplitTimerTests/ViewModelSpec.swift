@@ -294,60 +294,6 @@ final class ViewModelSpec: QuickSpec {
             }
             
             // MARK: - Generate text for split timings
-            context("Generating text for split timings") {
-                var lapTimingsTexts: [[String]]!
-                context("when user started and paused the timer after 2 ticks") {
-                    beforeEach {
-                        let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
-                        subject = ViewModel(timer: timerSimulator)
-                        lapTimingsTexts = ViewModelSpecHelper
-                            .getValues(from: subject.lapTimeTexts,
-                                     basedOn: {
-                                        subject.primaryButtonTapEventObserver.onNext(())
-                                        timerSimulator.onNext(())
-                                        timerSimulator.onNext(())
-                                        subject.primaryButtonTapEventObserver.onNext(())
-                                        timerSimulator.onNext(())
-                                        subject.primaryButtonTapEventObserver.onNext(())
-                                        timerSimulator.onNext(())
-
-                            })
-                    }
-                    it("should generate an array of 3 texts only") {
-                        expect(lapTimingsTexts).to(equal([["00:00.1 - 00:00.1"],
-                                                          ["00:00.2 - 00:00.2"],
-                                                          ["00:00.3 - 00:00.3"]]))
-                    }
-                }
-                context("when user started and split after 2 ticks and split again, and finally paused timer after 2 ticks") {
-                    beforeEach {
-                        let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
-                        subject = ViewModel(timer: timerSimulator)
-                        lapTimingsTexts = ViewModelSpecHelper
-                            .getValues(from: subject.lapTimeTexts,
-                                       basedOn: {
-                                        subject.primaryButtonTapEventObserver.onNext(())
-                                        timerSimulator.onNext(())
-                                        timerSimulator.onNext(())
-                                        subject.secondaryButtonTapEventObserver.onNext(())
-                                        timerSimulator.onNext(())
-                                        subject.secondaryButtonTapEventObserver.onNext(())
-                                        timerSimulator.onNext(())
-                                        subject.primaryButtonTapEventObserver.onNext(())
-                                        timerSimulator.onNext(())
-                            })
-                    }
-                    it("should generate an array of 2 texts only") {
-                        expect(lapTimingsTexts).to(equal([["00:00.1 - 00:00.1"],
-                                                          ["00:00.2 - 00:00.2"],
-                                                          ["00:00.0 - 00:00.2", "00:00.2 - 00:00.2"],
-                                                          ["00:00.1 - 00:00.3", "00:00.2 - 00:00.2"],
-                                                          ["00:00.0 - 00:00.3", "00:00.1 - 00:00.3", "00:00.2 - 00:00.2"],
-                                                          ["00:00.1 - 00:00.4", "00:00.1 - 00:00.3", "00:00.2 - 00:00.2"]]))
-                    }
-                }
-            }
-            // MARK: - Generate text for split timings
             context("Generating cellModels for split timings") {
                 var cellModels: [[CellModel]]!
                 context("when user started and paused the timer after 2 ticks") {

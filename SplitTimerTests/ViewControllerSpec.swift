@@ -161,11 +161,6 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     var timerLabelText: Observable<String> {
         return mockTimerLabelText.asObservable()
     }
-    
-    var mockLapTimeTexts = PublishSubject<[String]>()
-    var lapTimeTexts: Observable<[String]> {
-        return mockLapTimeTexts
-    }
 
     var mockCellModels = PublishSubject<[CellModel]>()
     var cellModels: Observable<[CellModel]> {
