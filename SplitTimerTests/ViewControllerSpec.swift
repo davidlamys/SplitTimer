@@ -102,12 +102,26 @@ final class ViewControllerSpec: QuickSpec {
                         expect(subject.secondaryButton.isEnabled).to(beFalse())
                     }
                 }
-                context("when view model sends an array of 2 laptime texts") {
+                context("when view model sends an array of 2 cellModels") {
+                    var cell0: UITableViewCell?
+                    var cell1: UITableViewCell?
                     beforeEach {
-                        mockViewModel.mockLapTimeTexts.onNext(["123", "456"])
+                        mockViewModel.mockCellModels.onNext([CellModel(lapTime: 10, splitTime: 10),
+                                                             CellModel(lapTime: 5, splitTime: 15)])
+                        let indexPath0 = IndexPath(item: 0, section: 0)
+                        cell0 = subject.tableView.cellForRow(at: indexPath0)
+                        
+                        let indexPath1 = IndexPath(item: 1, section: 0)
+                        cell1 = subject.tableView.cellForRow(at: indexPath1)
                     }
                     it("should increase table view count") {
                         expect(subject.tableView.numberOfRows(inSection: 0)).to(equal(2))
+                    }
+                    it("should set the cells correctly") {
+                        expect(cell0?.textLabel?.text).to(equal("00:01.0"))
+                        expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
+                        expect(cell1?.textLabel?.text).to(equal("00:00.5"))
+                        expect(cell1?.detailTextLabel?.text).to(equal("00:01.5"))
                     }
                 }
             }
@@ -153,4 +167,8 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         return mockLapTimeTexts
     }
 
+    var mockCellModels = PublishSubject<[CellModel]>()
+    var cellModels: Observable<[CellModel]> {
+        return mockCellModels
+    }
 }

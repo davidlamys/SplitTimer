@@ -25,6 +25,7 @@ protocol ViewModelOutputType {
     var secondaryButtonEnabled: Observable<Bool> { get }
     var timerLabelText: Observable<String> { get }
     var lapTimeTexts: Observable<[String]> { get }
+    var cellModels: Observable<[CellModel]> { get }
 }
 
 struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
@@ -77,6 +78,10 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
                         "\(lap) - \(split)"
                     })
             })
+    }
+    
+    var cellModels: Observable<[CellModel]> {
+        return Observable.empty()
     }
     
     init(timer: Observable<Void> = TimerFactory.makeTimer(),

@@ -72,9 +72,11 @@ final class ViewController: UIViewController {
     }
     
     private func bindTableView(_ viewModel: ViewModelType) {
-        viewModel.output.lapTimeTexts
+        viewModel.output.cellModels
             .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _, model, cell in
-                cell.textLabel?.text = model
+                
+                cell.textLabel?.text =  stringFromTimeInterval(ms: model.lapTime)
+                cell.detailTextLabel?.text = stringFromTimeInterval(ms: model.splitTime)
             }
             .disposed(by: disposeBag)
     }
