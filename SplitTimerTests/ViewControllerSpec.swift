@@ -120,8 +120,8 @@ final class ViewControllerSpec: QuickSpec {
                     it("should set the cells correctly") {
                         expect(cell0?.textLabel?.text).to(equal("00:01.0"))
                         expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
-                        expect(cell1?.textLabel?.text).to(equal("00:00.5"))
-                        expect(cell1?.detailTextLabel?.text).to(equal("00:01.5"))
+                        expect(cell1?.textLabel?.text).to(equal("00:01.5"))
+                        expect(cell1?.detailTextLabel?.text).to(equal("00:00.5"))
                     }
                 }
             }

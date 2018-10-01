@@ -75,8 +75,8 @@ final class ViewController: UIViewController {
         viewModel.output.cellModels
             .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _, model, cell in
                 
-                cell.textLabel?.text =  stringFromTimeInterval(ms: model.lapTime)
-                cell.detailTextLabel?.text = stringFromTimeInterval(ms: model.splitTime)
+                cell.textLabel?.text =  stringFromTimeInterval(ms: model.splitTime)
+                cell.detailTextLabel?.text = stringFromTimeInterval(ms: model.lapTime)
             }
             .disposed(by: disposeBag)
     }
