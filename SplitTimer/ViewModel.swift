@@ -27,12 +27,6 @@ protocol ViewModelOutputType {
     var lapTimeTexts: Observable<[String]> { get }
 }
 
-enum TimerState {
-    case started
-    case paused
-    case cleared
-}
-
 struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     
     private var disposeBag = DisposeBag()
@@ -47,12 +41,12 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     // output
     var primaryButtonTitleText: Observable<String> {
         return timerState
-            .map(self.primaryButtonTitle)
+            .map(titleForPrimaryButton)
     }
     
     var secondaryButtonTitleText: Observable<String> {
         return timerState
-            .map(self.secondaryButtonTitle)
+            .map(titleForSecondaryButton)
     }
     
     var secondaryButtonEnabled: Observable<Bool> {
@@ -206,19 +200,6 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         }
     }
     
-    private func primaryButtonTitle(for timerState: TimerState) -> String {
-        switch timerState {
-        case .started: return "Stop"
-        case .paused, .cleared: return "Start"
-        }
-    }
-    
-    private func secondaryButtonTitle(for timerState: TimerState) -> String {
-        switch timerState {
-        case .started, .cleared: return "Lap"
-        case .paused: return "Reset"
-        }
-    }
 }
 
 private struct TimerFactory {

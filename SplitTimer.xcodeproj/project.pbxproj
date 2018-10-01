@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15322C962162397A001C3128 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15322C952162397A001C3128 /* TimerState.swift */; };
 		1578E912215595B90060A9F8 /* ViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578E911215595B90060A9F8 /* ViewModelSpec.swift */; };
 		1599E3AB215563E300523F26 /* ViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599E3AA215563E300523F26 /* ViewControllerSpec.swift */; };
 		1599E3AE215572E400523F26 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599E3AD215572E400523F26 /* UIViewController+Extension.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		051A301E27B61F465605BEDA /* Pods-SplitTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer.debug.xcconfig"; sourceTree = "<group>"; };
+		15322C952162397A001C3128 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		1578E911215595B90060A9F8 /* ViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSpec.swift; sourceTree = "<group>"; };
 		1599E3AA215563E300523F26 /* ViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSpec.swift; sourceTree = "<group>"; };
 		1599E3AD215572E400523F26 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15322C9721623992001C3128 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				15322C952162397A001C3128 /* TimerState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		1599E3AC21556ABE00523F26 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 				15ECEEE921553CD300109445 /* AppDelegate.swift */,
 				15ECEEEB21553CD300109445 /* ViewController.swift */,
 				1599E3AF2155746500523F26 /* ViewModel.swift */,
+				15322C9721623992001C3128 /* Models */,
 				15ECEEED21553CD300109445 /* ViewController.storyboard */,
 				15ECEEF021553CD400109445 /* Assets.xcassets */,
 				15ECEEF221553CD400109445 /* LaunchScreen.storyboard */,
@@ -337,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15F5589721561FE1008DDC9E /* StringHelpers.swift in Sources */,
+				15322C962162397A001C3128 /* TimerState.swift in Sources */,
 				1599E3AE215572E400523F26 /* UIViewController+Extension.swift in Sources */,
 				15ECEEEC21553CD300109445 /* ViewController.swift in Sources */,
 				1599E3B02155746500523F26 /* ViewModel.swift in Sources */,
