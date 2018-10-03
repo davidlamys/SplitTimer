@@ -16,6 +16,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var secondaryButton: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var displayModeSegmentControl: UISegmentedControl!
     
     var viewModel: ViewModelType! {
         didSet {

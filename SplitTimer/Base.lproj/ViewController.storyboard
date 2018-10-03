@@ -63,6 +63,14 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                                 <state key="normal" title="Start"/>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AVW-iq-Ecw">
+                                <rect key="frame" x="41.333333333333343" y="687" width="331.33333333333326" height="29"/>
+                                <segments>
+                                    <segment title="Split Only"/>
+                                    <segment title="Laps Only"/>
+                                    <segment title="Both"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -71,18 +79,22 @@
                             <constraint firstItem="w0e-dt-msq" firstAttribute="leading" secondItem="3kU-kc-fUk" secondAttribute="leading" id="Brx-dx-LnP"/>
                             <constraint firstItem="3kU-kc-fUk" firstAttribute="leading" secondItem="zQS-fm-qx5" secondAttribute="leading" id="ByV-pQ-Ycc"/>
                             <constraint firstItem="zQS-fm-qx5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="FBt-FY-E4L"/>
+                            <constraint firstItem="AVW-iq-Ecw" firstAttribute="width" secondItem="zQS-fm-qx5" secondAttribute="width" id="FGB-LU-ddq"/>
                             <constraint firstItem="3kU-kc-fUk" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.1" id="P4m-bD-5ca"/>
                             <constraint firstItem="w0e-dt-msq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QSL-mw-LPE"/>
+                            <constraint firstItem="AVW-iq-Ecw" firstAttribute="centerX" secondItem="zQS-fm-qx5" secondAttribute="centerX" id="QWX-N8-G97"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zQS-fm-qx5" secondAttribute="bottom" constant="60" id="ToC-mS-2Pq"/>
                             <constraint firstItem="zQS-fm-qx5" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="UiE-0m-6nq"/>
                             <constraint firstItem="Eco-zO-6AO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3kU-kc-fUk" secondAttribute="trailing" constant="30" id="bHd-de-moY"/>
                             <constraint firstItem="Eco-zO-6AO" firstAttribute="trailing" secondItem="zQS-fm-qx5" secondAttribute="trailing" id="deF-0f-a21"/>
                             <constraint firstItem="w0e-dt-msq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.7" id="hkd-0Q-cmo"/>
                             <constraint firstItem="w0e-dt-msq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="l1s-Ha-lbW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AVW-iq-Ecw" secondAttribute="bottom" constant="21" id="wih-bL-DPS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="displayModeSegmentControl" destination="AVW-iq-Ecw" id="0c4-Dn-wJW"/>
                         <outlet property="primaryButton" destination="Eco-zO-6AO" id="YTP-7E-0A6"/>
                         <outlet property="secondaryButton" destination="3kU-kc-fUk" id="CAA-RG-2Is"/>
                         <outlet property="tableView" destination="zQS-fm-qx5" id="FAo-rR-HWR"/>
