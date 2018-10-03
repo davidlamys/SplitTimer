@@ -1,5 +1,5 @@
 //
-//  CellModel
+//  LapModel
 //  SplitTimer
 //
 //  Created by David Lam on 1/10/18.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct CellModel {
+struct LapModel {
     let lapTime: Int
     let splitTime: Int
 }
 
-extension CellModel: Equatable {}
+extension LapModel: Equatable {}

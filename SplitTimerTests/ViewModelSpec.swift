@@ -294,14 +294,14 @@ final class ViewModelSpec: QuickSpec {
             }
             
             // MARK: - Generate text for split timings
-            context("Generating cellModels for split timings") {
-                var cellModels: [[CellModel]]!
+            context("Generating lapModels for split timings") {
+                var lapModels: [[LapModel]]!
                 context("when user started and paused the timer after 2 ticks") {
                     beforeEach {
                         let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
                         subject = ViewModel(timer: timerSimulator)
-                        cellModels = ViewModelSpecHelper
-                            .getValues(from: subject.cellModels,
+                        lapModels = ViewModelSpecHelper
+                            .getValues(from: subject.lapModels,
                                        basedOn: {
                                         subject.primaryButtonTapEventObserver.onNext(())
                                         timerSimulator.onNext(())
@@ -314,19 +314,19 @@ final class ViewModelSpec: QuickSpec {
                             })
                     }
                     it("should generate an array of 3 cell models only") {
-                        let expectedCellModels = [[CellModel(lapTime: 1, splitTime: 1)],
-                                                  [CellModel(lapTime: 2, splitTime: 2)],
-                                                  [CellModel(lapTime: 3, splitTime: 3)]]
+                        let expectedLapModels = [[LapModel(lapTime: 1, splitTime: 1)],
+                                                  [LapModel(lapTime: 2, splitTime: 2)],
+                                                  [LapModel(lapTime: 3, splitTime: 3)]]
                         
-                        expect(cellModels).to(equal(expectedCellModels))
+                        expect(lapModels).to(equal(expectedLapModels))
                     }
                 }
                 context("when user started and split after 2 ticks and split again, and finally paused timer after 2 ticks") {
                     beforeEach {
                         let timerSimulator = PublishSubject<Void>() // 1 tick == 1 millisecond
                         subject = ViewModel(timer: timerSimulator)
-                        cellModels = ViewModelSpecHelper
-                            .getValues(from: subject.cellModels,
+                        lapModels = ViewModelSpecHelper
+                            .getValues(from: subject.lapModels,
                                        basedOn: {
                                         subject.primaryButtonTapEventObserver.onNext(())
                                         timerSimulator.onNext(())
@@ -340,18 +340,18 @@ final class ViewModelSpec: QuickSpec {
                             })
                     }
                     it("should generate an array of 2 texts only") {
-                        let firstLap = CellModel(lapTime: 2, splitTime: 2)
-                        let secondLap = CellModel(lapTime: 1, splitTime: 3)
-                        let thirdLap = CellModel(lapTime: 1, splitTime: 4)
+                        let firstLap = LapModel(lapTime: 2, splitTime: 2)
+                        let secondLap = LapModel(lapTime: 1, splitTime: 3)
+                        let thirdLap = LapModel(lapTime: 1, splitTime: 4)
                         
-                        let expectedCellModels = [[CellModel(lapTime: 1, splitTime: 1)],
+                        let expectedLapModels = [[LapModel(lapTime: 1, splitTime: 1)],
                                                   [firstLap],
-                                                  [CellModel(lapTime: 0, splitTime: 2), firstLap],
+                                                  [LapModel(lapTime: 0, splitTime: 2), firstLap],
                                                   [secondLap, firstLap],
-                                                  [CellModel(lapTime: 0, splitTime: 3), secondLap, firstLap],
+                                                  [LapModel(lapTime: 0, splitTime: 3), secondLap, firstLap],
                                                   [thirdLap, secondLap, firstLap]]
 
-                        expect(cellModels).to(equal(expectedCellModels))
+                        expect(lapModels).to(equal(expectedLapModels))
                     }
                 }
             }

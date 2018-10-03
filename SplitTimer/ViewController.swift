@@ -74,7 +74,7 @@ final class ViewController: UIViewController {
     }
     
     private func bindTableView(_ viewModel: ViewModelType) {
-        viewModel.output.cellModels
+        viewModel.output.lapModels
             .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _, model, cell in
                 
                 cell.textLabel?.text =  stringFromTimeInterval(ms: model.splitTime)

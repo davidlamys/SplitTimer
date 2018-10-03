@@ -123,12 +123,12 @@ final class ViewControllerSpec: QuickSpec {
                         expect(subject.secondaryButton.isEnabled).to(beFalse())
                     }
                 }
-                context("when view model sends an array of 2 cellModels") {
+                context("when view model sends an array of 2 lapModels") {
                     var cell0: UITableViewCell?
                     var cell1: UITableViewCell?
                     beforeEach {
-                        mockViewModel.mockCellModels.onNext([CellModel(lapTime: 10, splitTime: 10),
-                                                             CellModel(lapTime: 5, splitTime: 15)])
+                        mockViewModel.mockLapModels.onNext([LapModel(lapTime: 10, splitTime: 10),
+                                                             LapModel(lapTime: 5, splitTime: 15)])
                         let indexPath0 = IndexPath(item: 0, section: 0)
                         cell0 = subject.tableView.cellForRow(at: indexPath0)
                         
@@ -184,8 +184,8 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
         return mockTimerLabelText.asObservable()
     }
 
-    var mockCellModels = PublishSubject<[CellModel]>()
-    var cellModels: Observable<[CellModel]> {
-        return mockCellModels
+    var mockLapModels = PublishSubject<[LapModel]>()
+    var lapModels: Observable<[LapModel]> {
+        return mockLapModels
     }
 }
