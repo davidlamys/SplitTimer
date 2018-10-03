@@ -355,6 +355,22 @@ final class ViewModelSpec: QuickSpec {
                     }
                 }
             }
+            context("when user tap on segment control to switch display mode") {
+                var displayModes: [DisplayMode]!
+                beforeEach {
+                    subject = ViewModel()
+                    displayModes = ViewModelSpecHelper
+                        .getValues(from: subject.displayMode,
+                                   basedOn: {
+                                    subject.displaySegmentControlObserver.onNext(0)
+                                    subject.displaySegmentControlObserver.onNext(1)
+                                    subject.displaySegmentControlObserver.onNext(2)
+                        })
+                }
+                it("should generate an array of 3 displayableMode") {
+                    expect(displayModes).to(equal([.splitOnly, .lapOnly, .both]))
+                }
+            }
         }
     }
 }

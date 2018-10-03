@@ -188,4 +188,9 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     var lapModels: Observable<[LapModel]> {
         return mockLapModels
     }
+    
+    var mockDisplayMode = PublishSubject<DisplayMode>()
+    var displayMode: Observable<DisplayMode> {
+        return mockDisplayMode
+    }
 }

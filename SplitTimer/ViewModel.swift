@@ -26,11 +26,11 @@ protocol ViewModelOutputType {
     var secondaryButtonEnabled: Observable<Bool> { get }
     var timerLabelText: Observable<String> { get }
     var lapModels: Observable<[LapModel]> { get }
+    var displayMode: Observable<DisplayMode> { get }
 }
 
 struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
 
-    
     private var disposeBag = DisposeBag()
     
     var input: ViewModelInputType { return self }
@@ -77,6 +77,17 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
                     .map({ (lap, split) -> LapModel in
                         return LapModel(lapTime: lap, splitTime: split)
                     })
+            })
+    }
+    
+    var displayMode: Observable<DisplayMode> {
+        return displaySegmentControlObserver
+            .map({
+                switch $0 {
+                case 0: return .splitOnly
+                case 1: return .lapOnly
+                default: return .both
+                }
             })
     }
     
