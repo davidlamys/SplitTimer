@@ -57,6 +57,27 @@ final class ViewControllerSpec: QuickSpec {
                         expect(events.count).to(be(1))
                     }
                 }
+                
+                context("when segment control is tapped") {
+                    var events: [Recorded<Event<Int>>]!
+                    beforeEach {
+                        events = ObservableHelper
+                            .events(from: mockViewModel.input.displaySegmentControlObserver, disposeBag: disposeBag, executeBlock: {
+                                subject.displayModeSegmentControl.selectedSegmentIndex = 1
+                                subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+                                subject.displayModeSegmentControl.selectedSegmentIndex = 1
+                                subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+                                subject.displayModeSegmentControl.selectedSegmentIndex = 1
+                                subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+                                subject.displayModeSegmentControl.selectedSegmentIndex = 2
+                                subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+
+                            })
+                    }
+                    it("should send input to view model when there is distinct changes") {
+                        expect(events.count).to(equal(2))
+                    }
+                }
             }
             
             context("Reacting to view model output") {
@@ -141,6 +162,7 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     var output: ViewModelOutputType { return self }
     var primaryButtonTapEventObserver = PublishSubject<Void>()
     var secondaryButtonTapEventObserver = PublishSubject<Void>()
+    var displaySegmentControlObserver = PublishSubject<Int>()
     
     var mockPrimaryButtonTitleText = PublishSubject<String>()
     var primaryButtonTitleText: Observable<String> {

@@ -40,6 +40,7 @@ final class ViewController: UIViewController {
         bindSecondaryButton(viewModel)
         bindTimerLabel(viewModel)
         bindTableView(viewModel)
+        bindSegmentControl(viewModel)
     }
     
     private func bindPrimaryButton(_ viewModel: ViewModelType) {
@@ -79,6 +80,13 @@ final class ViewController: UIViewController {
                 cell.textLabel?.text =  stringFromTimeInterval(ms: model.splitTime)
                 cell.detailTextLabel?.text = stringFromTimeInterval(ms: model.lapTime)
             }
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindSegmentControl(_ viewModel: ViewModelType) {
+        displayModeSegmentControl.rx.selectedSegmentIndex
+            .distinctUntilChanged()
+            .bind(to: viewModel.input.displaySegmentControlObserver)
             .disposed(by: disposeBag)
     }
 }

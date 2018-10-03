@@ -17,6 +17,7 @@ protocol ViewModelType {
 protocol ViewModelInputType {
     var primaryButtonTapEventObserver: PublishSubject<Void> { get }
     var secondaryButtonTapEventObserver: PublishSubject<Void> { get }
+    var displaySegmentControlObserver: PublishSubject<Int> { get }
 }
 
 protocol ViewModelOutputType {
@@ -28,6 +29,7 @@ protocol ViewModelOutputType {
 }
 
 struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
+
     
     private var disposeBag = DisposeBag()
     
@@ -37,7 +39,8 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     // input
     var primaryButtonTapEventObserver = PublishSubject<Void>()
     var secondaryButtonTapEventObserver = PublishSubject<Void>()
-    
+    var displaySegmentControlObserver = PublishSubject<Int>()
+
     // output
     var primaryButtonTitleText: Observable<String> {
         return timerState
