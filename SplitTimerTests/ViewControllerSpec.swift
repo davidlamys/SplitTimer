@@ -126,13 +126,13 @@ final class ViewControllerSpec: QuickSpec {
                 context("when view model sends an array of 2 lapModels") {
                     var cell0: UITableViewCell?
                     var cell1: UITableViewCell?
+                    let indexPath0 = IndexPath(item: 0, section: 0)
+                    let indexPath1 = IndexPath(item: 1, section: 0)
+                    let sampleLapModels = [LapModel(lapTime: 10, splitTime: 10),
+                                           LapModel(lapTime: 5, splitTime: 15)]
                     beforeEach {
-                        mockViewModel.mockLapModels.onNext([LapModel(lapTime: 10, splitTime: 10),
-                                                             LapModel(lapTime: 5, splitTime: 15)])
-                        let indexPath0 = IndexPath(item: 0, section: 0)
+                        mockViewModel.mockLapModels.onNext(sampleLapModels)
                         cell0 = subject.tableView.cellForRow(at: indexPath0)
-                        
-                        let indexPath1 = IndexPath(item: 1, section: 0)
                         cell1 = subject.tableView.cellForRow(at: indexPath1)
                     }
                     it("should increase table view count") {
@@ -143,6 +143,48 @@ final class ViewControllerSpec: QuickSpec {
                         expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
                         expect(cell1?.textLabel?.text).to(equal("00:01.5"))
                         expect(cell1?.detailTextLabel?.text).to(equal("00:00.5"))
+                    }
+                    context("when user tap on a `split only`") {
+                        beforeEach {
+                            subject.displayModeSegmentControl.selectedSegmentIndex = 0
+                            subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+                            cell0 = subject.tableView.cellForRow(at: indexPath0)
+                            cell1 = subject.tableView.cellForRow(at: indexPath1)
+                        }
+                        it("should set the cells correctly") {
+                            expect(cell0?.textLabel?.text).to(equal("Lap 1"))
+                            expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
+                            expect(cell1?.textLabel?.text).to(equal("Lap 2"))
+                            expect(cell1?.detailTextLabel?.text).to(equal("00:01.5"))
+                        }
+                    }
+                    context("when user tap on a `lap only`") {
+                        beforeEach {
+                            subject.displayModeSegmentControl.selectedSegmentIndex = 1
+                            subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+                            cell0 = subject.tableView.cellForRow(at: indexPath0)
+                            cell1 = subject.tableView.cellForRow(at: indexPath1)
+                        }
+                        it("should set the cells correctly") {
+                            expect(cell0?.textLabel?.text).to(equal("Lap 1"))
+                            expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
+                            expect(cell1?.textLabel?.text).to(equal("Lap 2"))
+                            expect(cell1?.detailTextLabel?.text).to(equal("00:00.5"))
+                        }
+                    }
+                    context("when user tap on a `both`") {
+                        beforeEach {
+                            subject.displayModeSegmentControl.selectedSegmentIndex = 2
+                            subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+                            cell0 = subject.tableView.cellForRow(at: indexPath0)
+                            cell1 = subject.tableView.cellForRow(at: indexPath1)
+                        }
+                        it("should set the cells correctly") {
+                            expect(cell0?.textLabel?.text).to(equal("00:01.0"))
+                            expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
+                            expect(cell1?.textLabel?.text).to(equal("Lap 2"))
+                            expect(cell1?.detailTextLabel?.text).to(equal("00:00.5"))
+                        }
                     }
                 }
             }
