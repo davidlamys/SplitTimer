@@ -124,13 +124,15 @@ final class ViewControllerSpec: QuickSpec {
                     }
                 }
                 context("when view model sends an array of 2 lapModels") {
+                    // data source should be sorted with the latest lap in first element
                     var cell0: UITableViewCell?
                     var cell1: UITableViewCell?
                     let indexPath0 = IndexPath(item: 0, section: 0)
                     let indexPath1 = IndexPath(item: 1, section: 0)
-                    let sampleLapModels = [LapModel(lapTime: 10, splitTime: 10),
-                                           LapModel(lapTime: 5, splitTime: 15)]
+                    let sampleLapModels = [LapModel(lapTime: 5, splitTime: 15), // lap 2
+                                           LapModel(lapTime: 10, splitTime: 10)]// lap 1
                     beforeEach {
+                        mockViewModel.mockDisplayMode.onNext(.both)
                         mockViewModel.mockLapModels.onNext(sampleLapModels)
                         cell0 = subject.tableView.cellForRow(at: indexPath0)
                         cell1 = subject.tableView.cellForRow(at: indexPath1)
@@ -138,38 +140,33 @@ final class ViewControllerSpec: QuickSpec {
                     it("should increase table view count") {
                         expect(subject.tableView.numberOfRows(inSection: 0)).to(equal(2))
                     }
-                    it("should set the cells correctly") {
-                        expect(cell0?.textLabel?.text).to(equal("00:01.0"))
-                        expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
-                        expect(cell1?.textLabel?.text).to(equal("00:01.5"))
-                        expect(cell1?.detailTextLabel?.text).to(equal("00:00.5"))
-                    }
+
                     context("when user tap on a `split only`") {
                         beforeEach {
-                            subject.displayModeSegmentControl.selectedSegmentIndex = 0
-                            subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+                            mockViewModel.mockDisplayMode.onNext(.splitOnly)
+                            mockViewModel.mockLapModels.onNext(sampleLapModels)
                             cell0 = subject.tableView.cellForRow(at: indexPath0)
                             cell1 = subject.tableView.cellForRow(at: indexPath1)
                         }
                         it("should set the cells correctly") {
-                            expect(cell0?.textLabel?.text).to(equal("Lap 1"))
-                            expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
-                            expect(cell1?.textLabel?.text).to(equal("Lap 2"))
-                            expect(cell1?.detailTextLabel?.text).to(equal("00:01.5"))
+                            expect(cell0?.textLabel?.text).to(equal("Lap 2"))
+                            expect(cell0?.detailTextLabel?.text).to(equal("00:01.5"))
+                            expect(cell1?.textLabel?.text).to(equal("Lap 1"))
+                            expect(cell1?.detailTextLabel?.text).to(equal("00:01.0"))
                         }
                     }
                     context("when user tap on a `lap only`") {
                         beforeEach {
-                            subject.displayModeSegmentControl.selectedSegmentIndex = 1
-                            subject.displayModeSegmentControl.sendActions(for: .valueChanged)
+                            mockViewModel.mockDisplayMode.onNext(.lapOnly)
+                            mockViewModel.mockLapModels.onNext(sampleLapModels)
                             cell0 = subject.tableView.cellForRow(at: indexPath0)
                             cell1 = subject.tableView.cellForRow(at: indexPath1)
                         }
                         it("should set the cells correctly") {
-                            expect(cell0?.textLabel?.text).to(equal("Lap 1"))
-                            expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
-                            expect(cell1?.textLabel?.text).to(equal("Lap 2"))
-                            expect(cell1?.detailTextLabel?.text).to(equal("00:00.5"))
+                            expect(cell0?.textLabel?.text).to(equal("Lap 2"))
+                            expect(cell0?.detailTextLabel?.text).to(equal("00:00.5"))
+                            expect(cell1?.textLabel?.text).to(equal("Lap 1"))
+                            expect(cell1?.detailTextLabel?.text).to(equal("00:01.0"))
                         }
                     }
                     context("when user tap on a `both`") {
@@ -180,10 +177,10 @@ final class ViewControllerSpec: QuickSpec {
                             cell1 = subject.tableView.cellForRow(at: indexPath1)
                         }
                         it("should set the cells correctly") {
-                            expect(cell0?.textLabel?.text).to(equal("00:01.0"))
-                            expect(cell0?.detailTextLabel?.text).to(equal("00:01.0"))
-                            expect(cell1?.textLabel?.text).to(equal("Lap 2"))
-                            expect(cell1?.detailTextLabel?.text).to(equal("00:00.5"))
+                            expect(cell0?.textLabel?.text).to(equal("00:01.5"))
+                            expect(cell0?.detailTextLabel?.text).to(equal("00:00.5"))
+                            expect(cell1?.textLabel?.text).to(equal("00:01.0"))
+                            expect(cell1?.detailTextLabel?.text).to(equal("00:01.0"))
                         }
                     }
                 }
