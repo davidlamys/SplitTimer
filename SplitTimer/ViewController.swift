@@ -74,22 +74,26 @@ final class ViewController: UIViewController {
     }
     
     private func bindTableView(_ viewModel: ViewModelType) {
+        typealias CellModel = (lapData: LapModel, displayMode: DisplayMode,lapNumber: Int)
+        
         viewModel.output.lapModels
-            .withLatestFrom(viewModel.output.displayMode, resultSelector: { (lapModels, displayMode) -> [(LapModel, DisplayMode, Int)] in
+            .withLatestFrom(viewModel.output.displayMode, resultSelector: { (lapModels, displayMode) -> [CellModel] in
+                guard lapModels.count > 0 else {
+                    return []
+                }
                 
-                //TODO: refactor this for sanity
+                let index = (1...lapModels.count).reversed()
                 
-                let lapModelWithDisplayMode = lapModels
-                    .map({ ($0, displayMode) })
-                
-                return lapModelWithDisplayMode
-                        .reduce([(LapModel, DisplayMode, Int)]()) { (array, arg) -> [(LapModel, DisplayMode, Int)] in
-                        return array + [(arg.0, arg.1, lapModelWithDisplayMode.count - array.count)]
-                        }
+                return zip(lapModels, index)
+                    .map({ ($0, displayMode, $1) })
             })
             .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { _, model, cell in
-                cell.textLabel?.text =  CellConfigurator.getMainLabelText(lap: model.0, displayMode: model.1, index: model.2)
-                cell.detailTextLabel?.text = CellConfigurator.getDetailLabelText(lap: model.0, displayMode: model.1)
+                cell.textLabel?.text =  CellConfigurator.getMainLabelText(lap: model.lapData,
+                                                                          displayMode: model.displayMode,
+                                                                          index: model.lapNumber)
+                
+                cell.detailTextLabel?.text = CellConfigurator.getDetailLabelText(lap: model.lapData,
+                                                                                 displayMode: model.displayMode)
             }
             .disposed(by: disposeBag)
     }
