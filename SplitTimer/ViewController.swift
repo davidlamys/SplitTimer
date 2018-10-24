@@ -78,7 +78,7 @@ final class ViewController: UIViewController {
         
         viewModel.output.lapModels
             .withLatestFrom(viewModel.output.displayMode, resultSelector: { (lapModels, displayMode) -> [CellModel] in
-                guard lapModels.count > 0 else {
+                guard lapModels.isEmpty == false else {
                     return []
                 }
                 

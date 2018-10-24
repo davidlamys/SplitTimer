@@ -9,10 +9,9 @@
 import UIKit
 
 extension UIViewController {
-    public static func make<T>(viewController: T.Type) -> T {
+    public static func make<T>(viewController: T.Type) -> T where T: UIViewController {
         let viewControllerName = String(describing: viewController)
-        
-        let storyboard = UIStoryboard(name: viewControllerName, bundle: Bundle(for: viewController as! AnyClass))
+        let storyboard = UIStoryboard(name: viewControllerName, bundle: Bundle(for: viewController))
         
         guard let viewController = storyboard.instantiateViewController(withIdentifier: viewControllerName) as? T else {
             fatalError("Unable to create ViewController: \(viewControllerName) from storyboard: \(storyboard)")

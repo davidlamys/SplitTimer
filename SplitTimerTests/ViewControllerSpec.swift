@@ -13,6 +13,7 @@ import RxTest
 
 @testable import SplitTimer
 
+//swiftlint:disable function_body_length
 final class ViewControllerSpec: QuickSpec {
     override func spec() {
         describe("View controller spec") {
