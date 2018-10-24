@@ -18,7 +18,7 @@ struct CellConfigurator {
             return stringFromTimeInterval(ms: splitTiming)
         }
     }
-    
+
     static func getDetailLabelText(lap: LapModel, displayMode: DisplayMode) -> String {
         switch displayMode {
         case .splitOnly:

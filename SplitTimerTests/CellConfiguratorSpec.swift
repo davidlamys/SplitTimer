@@ -6,8 +6,8 @@
 //  Copyright © 2018 David Lam. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxSwift
 import RxTest
 
@@ -29,10 +29,10 @@ final class CellConfiguratorSpec: QuickSpec {
                                                                  displayMode: .lapOnly)
                 }
                 it("should return the correct text for main label") {
-                    expect(mainLabelText).to(equal("Lap 1"))
+                    expect(mainLabelText) == "Lap 1"
                 }
                 it("should return the correct text for detail label") {
-                    expect(detailLabelText).to(equal("01:00.0"))
+                    expect(detailLabelText) == "01:00.0"
                 }
             }
             context("when displaying only split timing") {
@@ -44,10 +44,10 @@ final class CellConfiguratorSpec: QuickSpec {
                                                                  displayMode: .splitOnly)
                 }
                 it("should return the correct text for main label") {
-                    expect(mainLabelText).to(equal("Lap 1"))
+                    expect(mainLabelText) == "Lap 1"
                 }
                 it("should return the correct text for detail label") {
-                    expect(detailLabelText).to(equal("02:00.0"))
+                    expect(detailLabelText) == "02:00.0"
                 }
             }
             context("when displaying both timings") {
@@ -59,10 +59,10 @@ final class CellConfiguratorSpec: QuickSpec {
                                                                  displayMode: .both)
                 }
                 it("should return the correct text for main label") {
-                    expect(mainLabelText).to(equal("02:00.0"))
+                    expect(mainLabelText) == "02:00.0"
                 }
                 it("should return the correct text for detail label") {
-                    expect(detailLabelText).to(equal("01:00.0"))
+                    expect(detailLabelText) == "01:00.0"
                 }
             }
         }

@@ -6,8 +6,8 @@
 //  Copyright © 2018 David Lam. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxSwift
 import RxTest
 
@@ -28,7 +28,7 @@ final class ViewControllerSpec: QuickSpec {
                 _ = subject.view
                 subject.viewModel = mockViewModel
             }
-            
+
             context("Pipe UI events to view model") {
                 context("when primary button is pressed") {
                     var events: [Recorded<Event<Void>>]!
@@ -58,7 +58,7 @@ final class ViewControllerSpec: QuickSpec {
                         expect(events.count).to(be(1))
                     }
                 }
-                
+
                 context("when segment control is tapped") {
                     var events: [Recorded<Event<Int>>]!
                     beforeEach {
@@ -76,18 +76,18 @@ final class ViewControllerSpec: QuickSpec {
                             })
                     }
                     it("should send input to view model when there is distinct changes") {
-                        expect(events.count).to(equal(2))
+                        expect(events.count) == 2
                     }
                 }
             }
-            
+
             context("Reacting to view model output") {
                 context("when view model has a new output for primary button title text") {
                     beforeEach {
                         mockViewModel.mockPrimaryButtonTitleText.onNext("Hello world")
                     }
                     it("should set primary button title") {
-                        expect(subject.primaryButton.currentTitle).to(equal("Hello world"))
+                        expect(subject.primaryButton.currentTitle) == "Hello world"
                     }
                 }
                 context("when view model has a new output for secondary button title text") {
@@ -95,7 +95,7 @@ final class ViewControllerSpec: QuickSpec {
                         mockViewModel.mockSecondaryButtonTitleText.onNext("Good bye world")
                     }
                     it("should set secondary button title") {
-                        expect(subject.secondaryButton.currentTitle).to(equal("Good bye world"))
+                        expect(subject.secondaryButton.currentTitle) == "Good bye world"
                     }
                 }
                 context("when view model has a new output for timer label text") {
@@ -103,7 +103,7 @@ final class ViewControllerSpec: QuickSpec {
                         mockViewModel.mockTimerLabelText.onNext("25:25:25")
                     }
                     it("should set title") {
-                        expect(subject.timerLabel.text).to(equal("25:25:25"))
+                        expect(subject.timerLabel.text) == "25:25:25"
                     }
                 }
                 context("when view model sends signal to enable secondary button") {
@@ -139,7 +139,7 @@ final class ViewControllerSpec: QuickSpec {
                         cell1 = subject.tableView.cellForRow(at: indexPath1)
                     }
                     it("should increase table view count") {
-                        expect(subject.tableView.numberOfRows(inSection: 0)).to(equal(2))
+                        expect(subject.tableView.numberOfRows(inSection: 0)) == 2
                     }
 
                     context("when user tap on a `split only`") {
@@ -150,10 +150,10 @@ final class ViewControllerSpec: QuickSpec {
                             cell1 = subject.tableView.cellForRow(at: indexPath1)
                         }
                         it("should set the cells correctly") {
-                            expect(cell0?.textLabel?.text).to(equal("Lap 2"))
-                            expect(cell0?.detailTextLabel?.text).to(equal("00:01.5"))
-                            expect(cell1?.textLabel?.text).to(equal("Lap 1"))
-                            expect(cell1?.detailTextLabel?.text).to(equal("00:01.0"))
+                            expect(cell0?.textLabel?.text) == "Lap 2"
+                            expect(cell0?.detailTextLabel?.text) == "00:01.5"
+                            expect(cell1?.textLabel?.text) == "Lap 1"
+                            expect(cell1?.detailTextLabel?.text) == "00:01.0"
                         }
                     }
                     context("when user tap on a `lap only`") {
@@ -164,10 +164,10 @@ final class ViewControllerSpec: QuickSpec {
                             cell1 = subject.tableView.cellForRow(at: indexPath1)
                         }
                         it("should set the cells correctly") {
-                            expect(cell0?.textLabel?.text).to(equal("Lap 2"))
-                            expect(cell0?.detailTextLabel?.text).to(equal("00:00.5"))
-                            expect(cell1?.textLabel?.text).to(equal("Lap 1"))
-                            expect(cell1?.detailTextLabel?.text).to(equal("00:01.0"))
+                            expect(cell0?.textLabel?.text) == "Lap 2"
+                            expect(cell0?.detailTextLabel?.text) == "00:00.5"
+                            expect(cell1?.textLabel?.text) == "Lap 1"
+                            expect(cell1?.detailTextLabel?.text) == "00:01.0"
                         }
                     }
                     context("when user tap on a `both`") {
@@ -178,10 +178,10 @@ final class ViewControllerSpec: QuickSpec {
                             cell1 = subject.tableView.cellForRow(at: indexPath1)
                         }
                         it("should set the cells correctly") {
-                            expect(cell0?.textLabel?.text).to(equal("00:01.5"))
-                            expect(cell0?.detailTextLabel?.text).to(equal("00:00.5"))
-                            expect(cell1?.textLabel?.text).to(equal("00:01.0"))
-                            expect(cell1?.detailTextLabel?.text).to(equal("00:01.0"))
+                            expect(cell0?.textLabel?.text) == "00:01.5"
+                            expect(cell0?.detailTextLabel?.text) == "00:00.5"
+                            expect(cell1?.textLabel?.text) == "00:01.0"
+                            expect(cell1?.detailTextLabel?.text) == "00:01.0"
                         }
                     }
                 }
@@ -197,23 +197,23 @@ struct ViewControllerSpecHelper {
 }
 
 class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
-    
+
     var input: ViewModelInputType { return self }
     var output: ViewModelOutputType { return self }
     var primaryButtonTapEventObserver = PublishSubject<Void>()
     var secondaryButtonTapEventObserver = PublishSubject<Void>()
     var displaySegmentControlObserver = PublishSubject<Int>()
-    
+
     var mockPrimaryButtonTitleText = PublishSubject<String>()
     var primaryButtonTitleText: Observable<String> {
         return mockPrimaryButtonTitleText.asObservable()
     }
-    
+
     var mockSecondaryButtonTitleText = PublishSubject<String>()
     var secondaryButtonTitleText: Observable<String> {
         return mockSecondaryButtonTitleText.asObservable()
     }
-    
+
     var mockSecondaryButtonEnable = PublishSubject<Bool>()
     var secondaryButtonEnabled: Observable<Bool> {
         return mockSecondaryButtonEnable.asObservable()
@@ -228,7 +228,7 @@ class MockViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
     var lapModels: Observable<[LapModel]> {
         return mockLapModels
     }
-    
+
     var mockDisplayMode = PublishSubject<DisplayMode>()
     var displayMode: Observable<DisplayMode> {
         return mockDisplayMode
