@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIViewController {
-    public static func make<T>(viewController: T.Type) -> T where T: UIViewController {
+    static func make<T>(viewController: T.Type) -> T where T: UIViewController {
         let viewControllerName = String(describing: viewController)
         let storyboard = UIStoryboard(name: viewControllerName, bundle: Bundle(for: viewController))
 
