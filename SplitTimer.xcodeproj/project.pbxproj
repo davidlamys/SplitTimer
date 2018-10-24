@@ -194,6 +194,7 @@
 				15ECEEE321553CD200109445 /* Frameworks */,
 				15ECEEE421553CD200109445 /* Resources */,
 				5382EE0F5ADDA86881EDBA6F /* [CP] Embed Pods Frameworks */,
+				15876F4221809A3A0081032D /* Run Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -282,6 +283,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		15876F4221809A3A0081032D /* Run Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Swiftlint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		532548072383C85330EE002F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,7 +333,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-framework/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional-framework/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-framework/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -322,7 +340,6 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

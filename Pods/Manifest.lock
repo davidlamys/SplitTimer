@@ -8,6 +8,7 @@ PODS:
   - RxSwift (4.3.1)
   - RxTest (4.3.1):
     - RxSwift (~> 4.0)
+  - SwiftLint (0.27.0)
 
 DEPENDENCIES:
   - Nimble (from `https://github.com/Quick/Nimble.git`, branch `7.x-branch`)
@@ -16,6 +17,11 @@ DEPENDENCIES:
   - RxCocoa (from `https://github.com/ReactiveX/RxSwift.git`, branch `develop`)
   - RxSwift (from `https://github.com/ReactiveX/RxSwift.git`, branch `develop`)
   - RxTest (from `https://github.com/ReactiveX/RxSwift.git`, branch `develop`)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SwiftLint
 
 EXTERNAL SOURCES:
   Nimble:
@@ -64,7 +70,8 @@ SPEC CHECKSUMS:
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: c6cbead32f7b701eaccf1d143e81c36bd206f0c2
+PODFILE CHECKSUM: ed599bfa8b1ca0c6e150170380c173b6e0244de2
 
 COCOAPODS: 1.5.0

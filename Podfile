@@ -9,6 +9,7 @@ end
 target 'SplitTimer' do
     use_frameworks!
     common_pods
+    pod 'SwiftLint'
 end
 
 target 'SplitTimerTests' do
