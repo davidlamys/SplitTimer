@@ -204,14 +204,15 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
             })
     }
     
-    private func calculateRunningTime(runningTime: Int, latestState: TimerState) -> Int {
-        switch latestState {
-        case .started: return runningTime + 1
-        case .paused: return runningTime
-        case .cleared: return 0
-        }
-    }
     
+}
+
+private func calculateRunningTime(runningTime: Int, latestState: TimerState) -> Int {
+    switch latestState {
+    case .started: return runningTime + 1
+    case .paused: return runningTime
+    case .cleared: return 0
+    }
 }
 
 private struct TimerFactory {
