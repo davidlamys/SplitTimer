@@ -76,8 +76,8 @@ final class ViewController: UIViewController {
     private func bindTableView(_ viewModel: ViewModelType) {
         typealias CellModel = (lapData: LapModel, displayMode: DisplayMode, lapNumber: Int)
 
-        viewModel.output.lapModels
-            .withLatestFrom(viewModel.output.displayMode, resultSelector: { lapModels, displayMode -> [CellModel] in
+        Observable.combineLatest(viewModel.output.lapModels, viewModel.output.displayMode)
+            .map({ lapModels, displayMode -> [CellModel] in
                 guard lapModels.isEmpty == false else {
                     return []
                 }
