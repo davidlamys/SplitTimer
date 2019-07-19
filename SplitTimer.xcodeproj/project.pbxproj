@@ -23,7 +23,7 @@
 		15ECEEF121553CD400109445 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEF021553CD400109445 /* Assets.xcassets */; };
 		15ECEEF421553CD400109445 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15ECEEF221553CD400109445 /* LaunchScreen.storyboard */; };
 		15F5589721561FE1008DDC9E /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F5589621561FE1008DDC9E /* StringHelpers.swift */; };
-		C10ED7E1134649AEDD1D076B /* libPods-SplitTimerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB29AD19056D2DF133AD258 /* libPods-SplitTimerTests.a */; };
+		990C70B950A4387C06A8DE32 /* Pods_SplitTimerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD1C01B08064B36278CA65A /* Pods_SplitTimerTests.framework */; };
 		EAFE1953D19B7ED05635C41F /* Pods_SplitTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA4AFA905DF76523676CF06 /* Pods_SplitTimer.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +62,8 @@
 		95798FAE12E4A8CECFC4BFCB /* Pods-SplitTimerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimerTests/Pods-SplitTimerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEE752F04DEC2C8BC8A4BF6F /* Pods-SplitTimerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimerTests/Pods-SplitTimerTests.release.xcconfig"; sourceTree = "<group>"; };
 		AFA4AFA905DF76523676CF06 /* Pods_SplitTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBD1C01B08064B36278CA65A /* Pods_SplitTimerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitTimerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E248B144F2D583926F948B87 /* Pods-SplitTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitTimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer.release.xcconfig"; sourceTree = "<group>"; };
-		EFB29AD19056D2DF133AD258 /* libPods-SplitTimerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SplitTimerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C10ED7E1134649AEDD1D076B /* libPods-SplitTimerTests.a in Frameworks */,
+				990C70B950A4387C06A8DE32 /* Pods_SplitTimerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				AFA4AFA905DF76523676CF06 /* Pods_SplitTimer.framework */,
-				EFB29AD19056D2DF133AD258 /* libPods-SplitTimerTests.a */,
+				DBD1C01B08064B36278CA65A /* Pods_SplitTimerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -213,6 +213,7 @@
 				15ECEEF621553CD400109445 /* Sources */,
 				15ECEEF721553CD400109445 /* Frameworks */,
 				15ECEEF821553CD400109445 /* Resources */,
+				B45B11FFD0FBBCD3806730D3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -332,14 +333,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SplitTimer/Pods-SplitTimer-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-framework/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-framework/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +370,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B45B11FFD0FBBCD3806730D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SplitTimerTests/Pods-SplitTimerTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SplitTimerTests/Pods-SplitTimerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

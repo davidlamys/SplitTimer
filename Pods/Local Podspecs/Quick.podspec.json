@@ -1,6 +1,6 @@
 {
   "name": "Quick",
-  "version": "1.3.2",
+  "version": "2.1.0",
   "summary": "The Swift (and Objective-C) testing framework.",
   "description": "Quick is a behavior-driven development framework for Swift and Objective-C. Inspired by RSpec, Specta, and Ginkgo.",
   "homepage": "https://github.com/Quick/Quick",
@@ -11,12 +11,12 @@
   "authors": "Quick Contributors",
   "platforms": {
     "ios": "7.0",
-    "osx": "10.9",
+    "osx": "10.10",
     "tvos": "9.0"
   },
   "source": {
     "git": "https://github.com/Quick/Quick.git",
-    "tag": "v1.3.2"
+    "tag": "v2.1.0"
   },
   "source_files": "Sources/**/*.{swift,h,m}",
   "public_header_files": [
@@ -26,7 +26,6 @@
     "Sources/QuickObjectiveC/QuickSpec.h"
   ],
   "exclude_files": [
-    "Sources/Quick/Configuration/QuickConfiguration.swift",
     "Sources/Quick/QuickSpec.swift",
     "Sources/Quick/QuickMain.swift"
   ],
@@ -39,5 +38,7 @@
     "APPLICATION_EXTENSION_API_ONLY": "YES",
     "ENABLE_BITCODE": "NO",
     "OTHER_LDFLAGS": "$(inherited) -Xlinker -no_application_extension"
-  }
+  },
+  "cocoapods_version": ">= 1.4.0",
+  "swift_version": "4.2"
 }

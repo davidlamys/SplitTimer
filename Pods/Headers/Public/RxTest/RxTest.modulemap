@@ -1,6 +1,0 @@
-module RxTest [system] {
-  umbrella header "RxTest-umbrella.h"
-
-  export *
-  module * { export * }
-}
