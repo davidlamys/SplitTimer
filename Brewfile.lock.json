@@ -46,6 +46,15 @@
             }
           }
         }
+      },
+      "rome": {
+        "version": "0.23.2.63",
+        "bottle": false
+      }
+    },
+    "tap": {
+      "tmspzz/tap": {
+        "revision": "610927a0af1ca559c80929eb6e97cf8ac6421401"
       }
     }
   },
