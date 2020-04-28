@@ -8,6 +8,7 @@ http://rx-marin.com/post/rxswift-rxcocoa-sample-split-laps-timer/
 This was a personal Kata as I thought it was 'simple' to build a split-laps-timer. I no longer think it's a trivial application.
 
 TODO:
-1: Cell model to encapsulate the strings.
-2: Highlight quickest lap in green.
-3: Highlight slowest lap in red.
+1. Replace Cocoapods with Carthage
+2. Integrate Rome
+3. Try XCodeGen
+4. Try Bazel (it's an over kill but it's something I have been meaning to try.)
