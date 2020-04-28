@@ -23,8 +23,4 @@ target 'SplitTimerTests' do
 #    , :branch => 'develop'
     pod 'RxTest',       :git => 'https://github.com/ReactiveX/RxSwift.git'
 #    , :branch => 'develop'
-    pod 'Nimble',       :git => 'https://github.com/Quick/Nimble.git'
-#    , :branch => '7.x-branch'
-    pod 'Quick',        :git => 'https://github.com/Quick/Quick.git'
-#    , :branch => '1.x-branch'
 end

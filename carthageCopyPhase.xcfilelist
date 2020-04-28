@@ -1,0 +1,11 @@
+#  carthageCopyPhase.xcfilelist
+#  SplitTimer
+#
+#  Created by David on 28/4/20.
+#  Copyright © 2020 David Lam. All rights reserved.
+
+# This file may be set as an input or output file list for a shell script build phase.
+# List file paths below; one per line. These paths will be considered inputs or outputs for the script phase.
+# Build settings will be expanded, e.g. $(SRCROOT)/fileName
+$(SRCROOT)/Carthage/Build/iOS/Quick.framework
+$(SRCROOT)/Carthage/Build/iOS/Nimble.framework
