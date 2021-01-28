@@ -107,9 +107,9 @@ struct ViewModel: ViewModelType, ViewModelInputType, ViewModelOutputType {
 
     private var timerState: Observable<TimerState> {
         let stateFromPrimaryButton: Observable<TimerState> = primaryButtonTapEventObserver
-            .scan(0, accumulator: { sum, _ -> Int in return sum + 1 })
-            .map({ $0 % 2 })
-            .map({ $0 == 0 ? .paused : .started })
+            .scan(TimerState.cleared, accumulator: { lastState, _ -> TimerState in
+                return lastState == .started ? .paused : .started
+            })
             .startWith(.cleared)
 
         let stateFromSecondaryButton: Observable<TimerState> = secondaryButtonTapEventObserver
