@@ -51,9 +51,9 @@ final class ViewModelSpec: QuickSpec {
                     it("Output should be correct") {
                         expect(titles) == ["Start",
                                            "Stop",
-                                           "Start",
+                                           "Resume",
                                            "Stop",
-                                           "Start"]
+                                           "Resume"]
                     }
                 }
             }
