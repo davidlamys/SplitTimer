@@ -17,7 +17,8 @@ enum TimerState {
 func titleForPrimaryButton(timerState: TimerState) -> String {
     switch timerState {
     case .started: return "Stop"
-    case .paused, .cleared: return "Start"
+    case .paused: return "Resume"
+    case .cleared: return "Start"
     }
 }
 
