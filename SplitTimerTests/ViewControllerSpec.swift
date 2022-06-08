@@ -41,7 +41,7 @@ final class ViewControllerSpec: QuickSpec {
                         })
                     }
                     it("should send input to view model") {
-                        expect(events.count).to(be(1))
+                        expect(events.count).to(equal(1))
                     }
                 }
                 context("when secondary button is pressed") {
@@ -55,7 +55,7 @@ final class ViewControllerSpec: QuickSpec {
                             })
                     }
                     it("should send input to view model") {
-                        expect(events.count).to(be(1))
+                        expect(events.count).to(equal(1))
                     }
                 }
 

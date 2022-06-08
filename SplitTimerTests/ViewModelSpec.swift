@@ -32,8 +32,8 @@ final class ViewModelSpec: QuickSpec {
                         titles = ViewModelSpecHelper.getInitialText(from: subject.primaryButtonTitleText)
                     }
                     it("Output should be `Start`") {
-                        expect(titles.count).to(be(1))
-                        expect(titles.last).to(be("Start"))
+                        expect(titles.count).to(equal(1))
+                        expect(titles.last).to(equal("Start"))
                     }
                 }
 
