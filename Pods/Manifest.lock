@@ -1,17 +1,17 @@
 PODS:
-  - Nimble (8.0.2)
-  - Quick (2.1.0)
-  - RxBlocking (5.0.1):
-    - RxSwift (~> 5)
-  - RxCocoa (5.0.1):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.0.0):
-    - RxSwift (~> 5)
-  - RxSwift (5.0.1)
-  - RxTest (5.0.1):
-    - RxSwift (~> 5)
-  - SwiftLint (0.27.0)
+  - Nimble (10.0.0)
+  - Quick (5.0.1)
+  - RxBlocking (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - RxTest (6.5.0):
+    - RxSwift (= 6.5.0)
+  - SwiftLint (0.47.1)
 
 DEPENDENCIES:
   - Nimble (from `https://github.com/Quick/Nimble.git`)
@@ -43,33 +43,33 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Nimble:
-    :commit: 07f7aa68ba7e0fafd3a9ae2b444605a543e58fea
+    :commit: 44b9392dc0cdcc318d7310553f74b13bb74fce1c
     :git: https://github.com/Quick/Nimble.git
   Quick:
-    :commit: ad85cdebd3621dc89e16630a2035f6475d32136c
+    :commit: 1d6f80abc1ad5b8f520ca78b4c0aae897d2aaece
     :git: https://github.com/Quick/Quick.git
   RxBlocking:
-    :commit: 70b8a33c5c3f4c3b15ebf10b638d2b15cfafb814
+    :commit: e0ab8c4e18baf6679a65b325155923276b832687
     :git: https://github.com/ReactiveX/RxSwift.git
   RxCocoa:
-    :commit: 70b8a33c5c3f4c3b15ebf10b638d2b15cfafb814
+    :commit: e0ab8c4e18baf6679a65b325155923276b832687
     :git: https://github.com/ReactiveX/RxSwift.git
   RxSwift:
-    :commit: 70b8a33c5c3f4c3b15ebf10b638d2b15cfafb814
+    :commit: e0ab8c4e18baf6679a65b325155923276b832687
     :git: https://github.com/ReactiveX/RxSwift.git
   RxTest:
-    :commit: 70b8a33c5c3f4c3b15ebf10b638d2b15cfafb814
+    :commit: e0ab8c4e18baf6679a65b325155923276b832687
     :git: https://github.com/ReactiveX/RxSwift.git
 
 SPEC CHECKSUMS:
-  Nimble: cdb5c4217dd9a7ea63c05303a0d54c91f6d45e8c
-  Quick: 6a4c91f1484591bb4b08850cd3c70216e3fc6518
-  RxBlocking: 8410e1bae69c61d47f025196d7b409324856db39
-  RxCocoa: dcceba42244a647ac976575f1b85b48030478ef1
-  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
-  RxSwift: 3a0c158ad22a75080a707abd9dc9191149e03522
-  RxTest: cfdad28bbd90a52106a71409a1b39e77fd4bf257
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  Nimble: 8418280f177e95f5d5a556b22ed80bd53e77b2a5
+  Quick: 1acc2b04334968255249e787d939024057b4676a
+  RxBlocking: ecac743dab661cc961c2ccaedcb5a95c715e8cda
+  RxCocoa: 34ed46d23f89660ffe01025173c1bbe5d66a9771
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: e5fc08473029d3da3e1bb17d5782b5af24a29979
+  RxTest: 097fa8a3072fba14734a67f66acce3f7193f0f65
+  SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
 
 PODFILE CHECKSUM: 0a4abd85ecba7908e5ced22d7f239bc49df37f87
 

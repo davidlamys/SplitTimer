@@ -217,7 +217,7 @@ private func calculateRunningTime(runningTime: Int, latestState: TimerState) -> 
 private struct TimerFactory {
     static func makeTimer() -> Observable<Void> {
         return Observable<Int>
-            .interval(0.1, scheduler: MainScheduler.instance)
+            .interval(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .map({ _ in })
     }
 }
