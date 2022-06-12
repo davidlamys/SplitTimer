@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SwiftUISplitTimer: View {
     @StateObject var viewModel = SwiftUIViewModelAdapter()
+    @State private var displayModeSelection = 0
 
     var body: some View {
         VStack {
@@ -36,6 +37,15 @@ struct SwiftUISplitTimer: View {
                 }
             }
 
+            Spacer()
+
+            Picker("Select Mode", selection: $displayModeSelection.onChange(viewModel.didChangePickerSelection)) {
+                Text("Split Only").tag(0)
+                Text("Lap Only").tag(1)
+                Text("Both").tag(2)
+            }
+            .pickerStyle(.segmented)
+
         }
     }
 }
@@ -43,5 +53,18 @@ struct SwiftUISplitTimer: View {
 struct SwiftUISplitTimerPreviews: PreviewProvider {
     static var previews: some View {
         SwiftUISplitTimer()
+    }
+}
+
+// https://stackoverflow.com/a/60130311
+extension Binding {
+    /// not needed in iOS 14 +
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        return Binding(
+            get: { self.wrappedValue },
+            set: { selection in
+                self.wrappedValue = selection
+                handler(selection)
+            })
     }
 }

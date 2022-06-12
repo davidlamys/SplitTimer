@@ -86,4 +86,8 @@ class SwiftUIViewModelAdapter: ObservableObject {
         viewModel.input.secondaryButtonTapEventObserver.onNext(())
     }
 
+    func didChangePickerSelection(index: Int) {
+        viewModel.input.displaySegmentControlObserver.onNext(index)
+    }
+
 }
