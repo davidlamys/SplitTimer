@@ -12,6 +12,8 @@
 		15322C9F21650D2A001C3128 /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15322C9E21650D2A001C3128 /* DisplayMode.swift */; };
 		15322CA121650D77001C3128 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15322CA021650D77001C3128 /* CellConfigurator.swift */; };
 		15322CA321650E31001C3128 /* CellConfiguratorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15322CA221650E31001C3128 /* CellConfiguratorSpec.swift */; };
+		154E16462854B7FA00212F41 /* SwiftUISplitTimer..swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E16452854B7FA00212F41 /* SwiftUISplitTimer..swift */; };
+		154E16492854CA7400212F41 /* SwiftUIViewModelAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E16482854CA7400212F41 /* SwiftUIViewModelAdapter.swift */; };
 		1578E912215595B90060A9F8 /* ViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578E911215595B90060A9F8 /* ViewModelSpec.swift */; };
 		1599E3AB215563E300523F26 /* ViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599E3AA215563E300523F26 /* ViewControllerSpec.swift */; };
 		1599E3AE215572E400523F26 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599E3AD215572E400523F26 /* UIViewController+Extension.swift */; };
@@ -45,6 +47,8 @@
 		15322C9E21650D2A001C3128 /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
 		15322CA021650D77001C3128 /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		15322CA221650E31001C3128 /* CellConfiguratorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfiguratorSpec.swift; sourceTree = "<group>"; };
+		154E16452854B7FA00212F41 /* SwiftUISplitTimer..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISplitTimer..swift; sourceTree = "<group>"; };
+		154E16482854CA7400212F41 /* SwiftUIViewModelAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewModelAdapter.swift; sourceTree = "<group>"; };
 		1578E911215595B90060A9F8 /* ViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSpec.swift; sourceTree = "<group>"; };
 		1599E3AA215563E300523F26 /* ViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSpec.swift; sourceTree = "<group>"; };
 		1599E3AD215572E400523F26 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -99,6 +103,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		154E16472854CA4A00212F41 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				154E16452854B7FA00212F41 /* SwiftUISplitTimer..swift */,
+				154E16482854CA7400212F41 /* SwiftUIViewModelAdapter.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		1599E3AC21556ABE00523F26 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +153,7 @@
 		15ECEEE821553CD300109445 /* SplitTimer */ = {
 			isa = PBXGroup;
 			children = (
+				154E16472854CA4A00212F41 /* SwiftUI */,
 				1599E3AC21556ABE00523F26 /* Utilities */,
 				15ECEEE921553CD300109445 /* AppDelegate.swift */,
 				15ECEEEB21553CD300109445 /* ViewController.swift */,
@@ -426,6 +440,8 @@
 				15ECEEEC21553CD300109445 /* ViewController.swift in Sources */,
 				1599E3B02155746500523F26 /* ViewModel.swift in Sources */,
 				15ECEEEA21553CD300109445 /* AppDelegate.swift in Sources */,
+				154E16462854B7FA00212F41 /* SwiftUISplitTimer..swift in Sources */,
+				154E16492854CA7400212F41 /* SwiftUIViewModelAdapter.swift in Sources */,
 				15322C9B21623FAB001C3128 /* LapModel.swift in Sources */,
 				15322C9F21650D2A001C3128 /* DisplayMode.swift in Sources */,
 			);

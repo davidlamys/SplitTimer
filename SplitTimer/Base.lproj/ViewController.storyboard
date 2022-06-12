@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="veu-tY-iQC">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="SplitTimer" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,14 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zQS-fm-qx5">
-                                <rect key="frame" x="41.333333333333343" y="441" width="331.33333333333326" height="235"/>
+                                <rect key="frame" x="41.333333333333343" y="403.33333333333331" width="331.33333333333326" height="223.66666666666669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="twf-02-2fP" detailTextLabel="YKq-Or-G8O" style="IBUITableViewCellStyleValue2" id="Pxn-RH-scq">
-                                        <rect key="frame" x="0.0" y="28" width="331.33333333333326" height="44"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="331.33333333333326" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pxn-RH-scq" id="Hyh-UM-SRW">
-                                            <rect key="frame" x="0.0" y="0.0" width="331.33333333333326" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="331.33333333333326" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="twf-02-2fP">
@@ -48,23 +47,23 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13:00:00" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0e-dt-msq">
-                                <rect key="frame" x="41.333333333333343" y="172.66666666666663" width="331.33333333333326" height="184"/>
+                                <rect key="frame" x="41.333333333333343" y="148.33333333333334" width="331.33333333333326" height="184.00000000000003"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="85"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kU-kc-fUk">
-                                <rect key="frame" x="41.333333333333336" y="394.66666666666669" width="44.000000000000007" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kU-kc-fUk">
+                                <rect key="frame" x="41.333333333333336" y="357" width="44.000000000000007" height="42"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                                 <state key="normal" title="Lap"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eco-zO-6AO">
-                                <rect key="frame" x="316.66666666666669" y="394.66666666666669" width="56" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eco-zO-6AO">
+                                <rect key="frame" x="316.66666666666669" y="357" width="56" height="42"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                                 <state key="normal" title="Start"/>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AVW-iq-Ecw">
-                                <rect key="frame" x="41.333333333333343" y="687" width="331.33333333333326" height="29"/>
+                                <rect key="frame" x="41.333333333333343" y="635" width="331.33333333333326" height="32"/>
                                 <segments>
                                     <segment title="Split Only"/>
                                     <segment title="Laps Only"/>
@@ -72,6 +71,7 @@
                                 </segments>
                             </segmentedControl>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zQS-fm-qx5" firstAttribute="firstBaseline" secondItem="3kU-kc-fUk" secondAttribute="baseline" constant="16" symbolType="layoutAnchor" id="7Cl-qi-qD1"/>
@@ -91,8 +91,8 @@
                             <constraint firstItem="w0e-dt-msq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="l1s-Ha-lbW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AVW-iq-Ecw" secondAttribute="bottom" constant="21" id="wih-bL-DPS"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="nVS-8t-VAy"/>
                     <connections>
                         <outlet property="displayModeSegmentControl" destination="AVW-iq-Ecw" id="0c4-Dn-wJW"/>
                         <outlet property="primaryButton" destination="Eco-zO-6AO" id="YTP-7E-0A6"/>
@@ -103,7 +103,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+            <point key="canvasLocation" x="-1149" y="-249"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="DYc-di-FI4">
+            <objects>
+                <tabBarController id="veu-tY-iQC" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g0I-FD-3zN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="3LH-gd-fPW"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OWc-9m-BJe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2210" y="33"/>
         </scene>
     </scenes>
 </document>
