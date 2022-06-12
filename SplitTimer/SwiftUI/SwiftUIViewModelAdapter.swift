@@ -10,6 +10,12 @@ import Foundation
 import RxSwift
 import SwiftUI
 
+struct ListItem: Identifiable {
+    let id = UUID()
+    let mainLabelText: String
+    let detailLabelText: String
+}
+
 class SwiftUIViewModelAdapter: ObservableObject {
     let viewModel = ViewModel()
     let disposeBag = DisposeBag()
@@ -18,6 +24,7 @@ class SwiftUIViewModelAdapter: ObservableObject {
     @Published var secondaryButtonTitle = ""
     @Published var secondaryButtonEnabled = false
     @Published var timerLabelText = "00:00:00"
+    @Published var listItems: [ListItem] = []
 
     init() {
         viewModel.output.primaryButtonTitleText
@@ -44,6 +51,30 @@ class SwiftUIViewModelAdapter: ObservableObject {
             })
             .disposed(by: disposeBag)
 
+        Observable.combineLatest(viewModel.output.lapModels, viewModel.output.displayMode)
+            .map({ lapModels, displayMode -> [ListItem] in
+                guard lapModels.isEmpty == false else {
+                    return []
+                }
+
+                let index = (1...lapModels.count).reversed()
+
+                return zip(lapModels, index)
+                    .map({ lapModel, index in
+                        let mainText = CellConfigurator.getMainLabelText(lap: lapModel,
+                                                                         displayMode: displayMode,
+                                                                         index: index)
+                        let detailText = CellConfigurator.getDetailLabelText(lap: lapModel,
+                                                                             displayMode: displayMode)
+                        return ListItem(mainLabelText: mainText,
+                                        detailLabelText: detailText)
+                    })
+            })
+            .subscribe(onNext: { [weak self] elements in
+                self?.listItems = elements
+            })
+            .disposed(by: disposeBag)
+        viewModel.input.displaySegmentControlObserver.onNext(0)
     }
 
     func didTapPrimaryButton() {

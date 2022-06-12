@@ -27,6 +27,14 @@ struct SwiftUISplitTimer: View {
             }
             .padding(60)
             Spacer()
+            List(viewModel.listItems) { item in
+                HStack {
+                    Text(item.mainLabelText)
+                        .font(Font.title)
+                    Text(item.detailLabelText)
+                        .font(Font.body)
+                }
+            }
 
         }
     }
