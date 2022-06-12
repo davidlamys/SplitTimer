@@ -13,19 +13,21 @@ struct SwiftUISplitTimer: View {
 
     var body: some View {
         VStack {
-            Text("0:00:00")
+            Spacer()
+            Text(viewModel.timerLabelText)
+                .font(Font.largeTitle)
+
             HStack {
-                Button(action: {
-
-                }, label: {
-                    Text("Lap")
-                })
-                Button(action: {
-
-                }, label: {
-                    Text("Start")
-                })
+                Button(action: viewModel.didTapSecondaryButton,
+                       label: { Text(viewModel.secondaryButtonTitle) })
+                    .disabled(!viewModel.secondaryButtonEnabled)
+                Spacer()
+                Button(action: viewModel.didTapPrimaryButton,
+                       label: { Text(viewModel.primaryButtonTitle) })
             }
+            .padding(60)
+            Spacer()
+
         }
     }
 }
